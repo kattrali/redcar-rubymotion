@@ -14,12 +14,12 @@ module Redcar
         #   end
         # end
         sub_menu "Cocoa", :priority => 10 do
-          item "Build and Run", BuildCommand
-          item "Clean and Build", BuildAndCleanCommand
+          item "Run", BuildCommand
+          item "Clean & Run", BuildAndCleanCommand
           item "Run on Device", BuildOnDeviceCommand
           item "Test", TestCommand
           separator
-          item "Create Archive", ArchiveCommand
+          item "Create Archives", ArchiveCommand
           item "Create Release", ReleaseCommand
           separator
           item "Show Configuration", ConfigCommand
@@ -27,7 +27,7 @@ module Redcar
           item "File Support Ticket", SendTicketCommand
           separator
           item "RubyMotion Reference Center", ShowRMDocs
-          item "iOS Reference", ShowIOSRefDocs
+          item "iOS API Reference", ShowIOSRefDocs
         end
       end
     end
