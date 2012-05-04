@@ -15,8 +15,9 @@ module Redcar
             end
           end
         end
+        command = commandline
         Thread.new do
-          system("#{commandline}")
+          system("#{command}")
         end
       end
 
@@ -24,14 +25,15 @@ module Redcar
         if preferred.start_with? "iTerm"
           <<-OSASCRIPT
             tell the first terminal
-              # launch session "Default Session"
+              launch session "Default Session"
               tell the last session
-                write text "#{text}"
+                set name to "RubyMotion"
+                write text "cd \\"#{project.path}\\";#{text}"
               end tell
             end tell
           OSASCRIPT
         else
-          %{ do script "#{text}" }
+          %{ do script "cd \\"#{project.path}\\";#{text}" }
         end
       end
 
@@ -45,6 +47,24 @@ module Redcar
             end tell
           END
         BASH
+      end
+    end
+
+    class RunnablesCommand < ProjectCommand
+      def text
+        "echo 'hello world'"
+      end
+
+      def title
+        "Run"
+      end
+
+      def output
+        "tab"
+      end
+
+      def execute
+        Redcar::Runnables.run_process(project.path,text,title,output)
       end
     end
 
@@ -66,7 +86,7 @@ module Redcar
       end
     end
 
-    class TestCommand < AppleScriptCommand
+    class TestCommand < RunnablesCommand
       def text
         "rake spec"
       end
@@ -84,22 +104,39 @@ module Redcar
       end
     end
 
-    class ConfigCommand < AppleScriptCommand
+    class ConfigCommand < RunnablesCommand
       def text
         "rake config"
       end
-    end
 
-    class QuitSimCommand < AppleScriptCommand
-      def text
-        "quit"
+      def title
+        "Configuration"
       end
     end
 
-    class SendTicketCommand < ProjectCommand
-      def execute
-        path = project.path
-        Redcar::Runnables.run_process(project.path,"motion support","Support","none")
+    class QuitSimCommand < RunnablesCommand
+      def text
+        path = File.join(File.dirname(File.expand_path(__FILE__)),'..','..','..','scripts')
+        cmd  = "osascript #{File.join(path,'stop-simulation.scpt')} &&"
+        preferred = (Project::Manager.storage['preferred_command_line'] ||= "Terminal")
+        if preferred == "iTerm"
+          cmd << "osascript #{File.join(path,'close-iterm-tab.scpt')};"
+        end
+        cmd
+      end
+
+      def output
+        "none"
+      end
+    end
+
+    class SendTicketCommand < RunnablesCommand
+      def text
+        "motion support"
+      end
+
+      def output
+        "none"
       end
     end
   end
