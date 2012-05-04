@@ -1,5 +1,8 @@
+
 require 'cocoa/tabs'
-require 'cocoa/commands'
+require 'cocoa/commands/reference'
+require 'cocoa/commands/scripting'
+
 module Redcar
   class Cocoa
 

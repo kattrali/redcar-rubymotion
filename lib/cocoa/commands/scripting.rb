@@ -1,45 +1,6 @@
 
 module Redcar
   class Cocoa
-    class URLCommand < ProjectCommand
-      def title;"Google";end
-      def url
-        "www.google.com"
-      end
-      def execute
-        Redcar::HtmlView::DisplayWebContent.new(title,url,true,Cocoa::ReferenceTab).run
-      end
-    end
-
-    class ShowRMDocs < URLCommand
-      def title;"RubyMotion";end
-      def url
-        "www.rubymotion.com/developer-center/"
-      end
-    end
-
-    class ShowIOSRefDocs < URLCommand
-      def title;"iOS Reference";end
-      def url
-        "developer.apple.com/library/ios/navigation/#section=Resource%20Types&topic=Reference"
-      end
-    end
-
-    class ShowDocsCommand < DocumentCommand
-      def execute
-        win = Redcar.app.focussed_window
-        if win and tab = win.focussed_notebook_tab
-          word = tab.edit_view.document.current_word
-          url  = urlify(word)
-          Redcar::HtmlView::DisplayWebContent.new(word,url,true,Cocoa::ReferenceTab).run
-        end
-      end
-
-      def urlify text
-        "developer.apple.com/library/ios/#documentation/UIKit/Reference/#{text}_Class/index.html"
-      end
-    end
-
     class AppleScriptCommand < ProjectCommand
       def text
         "echo 'Hello World'"
@@ -135,9 +96,10 @@ module Redcar
       end
     end
 
-    class SendTicketCommand < AppleScriptCommand
-      def text
-        "motion support"
+    class SendTicketCommand < ProjectCommand
+      def execute
+        path = project.path
+        Redcar::Runnables.run_process(project.path,"motion support","Support","none")
       end
     end
   end
