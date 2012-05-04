@@ -3,6 +3,8 @@ Redcar+RubyMotion
 
 Basic RubyMotion workflow support in Redcar Editor
 
+![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/screenshot.png)
+
 ### Features
 
 - Build and Run project from Cocoa Menu
