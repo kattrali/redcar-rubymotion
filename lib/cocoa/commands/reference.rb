@@ -11,9 +11,7 @@ module Redcar
         end
       end
       def message text
-        Redcar::Application::Dialog.message_box(
-          "Reference Documentation",
-          text,{:buttons => :ok})
+        Redcar::Application::Dialog.message_box(text,"Reference Documentation")
       end
     end
 
@@ -33,18 +31,27 @@ module Redcar
 
     class ShowDocsCommand < URLCommand
       sensitize :edit_tab_focussed
-
-      def url
-        text = ""
-        win  = Redcar.app.focussed_window
-        if win and tab = win.focussed_notebook_tab
-          text = tab.edit_view.document.current_word
+      def word
+        @word ||=begin
+          win  = Redcar.app.focussed_window
+          if win and tab = win.focussed_notebook_tab
+            tab.edit_view.document.current_word
+          else
+            ""
+          end
         end
+      end
+
+      def title;word;end
+      def url
+        text = word
         framework = framework_from_class(text)
         if text.empty?
           message("Class name not found under cursor")
+          nil
         elsif framework.nil?
           message("Framework not found for class #{text}")
+          nil
         else
           base = "developer.apple.com/library/ios/documentation"
           if framework == "Foundation"
@@ -57,23 +64,23 @@ module Redcar
 
       def framework_from_class text
         case text
-        when text =~ /^AB/
+        when /^AB/
           "AddressBookUI"
-        when text =~ /^CA/
+        when /^CA/
           "GraphicsImaging"
-        when text =~ /^CG/
+        when /^CG/
           "CoreGraphics"
-        when text =~ /^EK/
+        when /^EK/
           "EventKitUI"
-        when text =~ /^GK/
+        when /^GK/
           "GameKit"
-        when text =~ /^MK/
+        when /^MK/
           "MapKit"
-        when text =~ /^NS/
+        when /^NS/
           "Foundation"
-        when text =~ /^TW/
+        when /^TW/
           "Twitter"
-        when text =~ /^UI/
+        when /^UI/
           "UIKit"
         end
       end
