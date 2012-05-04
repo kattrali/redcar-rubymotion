@@ -14,6 +14,30 @@ Basic RubyMotion workflow support in Redcar Editor
 
 `cd ~/.redcar/plugins` and clone this directory
 
+### Usage
+
+Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar.
+
+Primary Commands:
+
+- *Run:* Run default `rake` command; build app and launch simulator from a terminal window
+
+- *Run on Device:* Build app and launch in attached and configured iOS device
+
+- *Test:* Run test suite
+
+- *Stop iOS Simulator:* Close simulator
+
+- *Create Archives:* Create release (App Store) and development .ipa files
+
+- *Show Configuration:* Display `rake config` in a Web View
+
+- *Show Class Documentation:* Open class documentation in a Web View for the class name currently under the cursor.
+
+- *File Support Ticket:* File a ticket with RubyMotion support
+
+- Reference Links: Open developer documentation in Web Views
+
 ### Configuration Notes
 
 - To change which terminal emulator to use, set the `preferred_command_line` property in `project_plugin` preferences. I've only ever tried this with iTerm and Terminal, both seem to work fine.
@@ -25,7 +49,6 @@ Basic RubyMotion workflow support in Redcar Editor
 ### To Do
 
 - Add reasonable keybindings
-- Make/Find a TextMate bundle for snippety goodness
 - Add dialect-specific syntax checking
 - Add commands for testflight
 - Create pane for viewing, adding, and removing resources
