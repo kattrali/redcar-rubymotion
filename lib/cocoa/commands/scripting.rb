@@ -86,7 +86,7 @@ module Redcar
       end
     end
 
-    class TestCommand < RunnablesCommand
+    class TestCommand < AppleScriptCommand
       def text
         "rake spec"
       end

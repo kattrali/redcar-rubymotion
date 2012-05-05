@@ -37,6 +37,7 @@ module Redcar
       osx = Redcar::Keymap.build("main", [:osx]) do
         link "Cmd+Shift+Space", ShowDocsCommand
         link "Cmd+R", BuildCommand
+        link "Cmd+T", TestCommand
         link "Ctrl+Shift+Q", QuitSimCommand
       end
       [osx]
