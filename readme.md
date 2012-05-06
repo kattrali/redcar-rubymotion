@@ -12,13 +12,19 @@ Basic RubyMotion workflow support in Redcar Editor
 - Send Support Tickets
 - View Cocoa Framework class documentation from a shortcut
 
+### Requirements
+
+- AppleScript - for terminal emulator interaction
+- Redcar
+- `macruby` on the same path as Redcar, for syntax checking
+
 ### Installation
 
 `cd ~/.redcar/plugins` and clone this directory
 
 ### Usage
 
-Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar.
+Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar. Syntax checking is performed on file save.
 
 Primary Commands:
 
@@ -51,6 +57,7 @@ Primary Commands:
 ### To Do
 
 - Add reasonable keybindings
-- Add dialect-specific syntax checking
 - Add commands for testflight
 - Create pane for viewing, adding, and removing resources
+- Add preferences option to run rake commands with trace
+- Add inline documentation for cocoapod dependencies
