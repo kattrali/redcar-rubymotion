@@ -28,9 +28,33 @@ module Redcar
           item "Show Class Documentation", ShowDocsCommand
           item "File Support Ticket", SendTicketCommand
           separator
-          item "RubyMotion Reference Center", ShowRMDocs
+          item "RubyMotion Developer Center", ShowRMDocs
           item "iOS API Reference", ShowIOSRefDocs
         end
+      end
+    end
+
+    def self.before_save document
+      if win = Redcar.app.focussed_window and project = Project::Manager.in_window(win)
+        confirmation = File.join(project.path,'.redcar','macruby.project')
+        if File.exists? confirmation
+          check_grammar(document)
+        else
+          rakefile = File.join(project.path,'Rakefile')
+          if File.exists? rakefile
+            text = File.new(rakefile).read
+            if text.include?'motion/project'
+              FileUtils.touch(confirmation)
+              check_grammar(document)
+            end
+          end
+        end
+      end
+    end
+
+    def self.check_grammar document
+      if document.edit_view.grammar.start_with? "Ruby"
+        document.edit_view.grammar = "MacRuby" if storage['force_macruby_grammar']
       end
     end
 
@@ -47,6 +71,7 @@ module Redcar
     def self.storage
       @storage ||= begin
         storage = Plugin::Storage.new('Cocoa')
+        storage.set_default('force_macruby_grammar',true)
         storage.set_default('save_project_before_running',true)
         storage
       end

@@ -15,12 +15,15 @@ Basic RubyMotion workflow support in Redcar Editor
 ### Requirements
 
 - AppleScript - for terminal emulator interaction
-- Redcar
-- `macruby` on the same path as Redcar, for syntax checking
+- Redcar 0.12+
+- `macruby` command on the same path as Redcar, for syntax checking
 
 ### Installation
 
-`cd ~/.redcar/plugins` and clone this directory
+1. Close Redcar
+2. Clone this repository into `~/.redcar/plugins/rubymotion`
+3. `rm ~/.redcar/cache/textmate-bundles.cache`
+4. Start Redcar
 
 ### Usage
 
@@ -53,6 +56,8 @@ Primary Commands:
 - Automatically saving tabs before running a command can be disabled in `Cocoa` preferences by setting `save_project_before_running` to false.
 
 - Reference Documentation can be opened in either the built-in Redcar browser or the external browser of choice by editing `use_external_browser_for_urls` in `html_view` preferences.
+
+- By default, Redcar+RubyMotion interprets all Ruby files in RubyMotion projects using MacRuby syntax. Set `force_macruby_grammar` to `false` to disable this option.
 
 ### To Do
 
