@@ -8,6 +8,7 @@ Basic RubyMotion workflow support in Redcar Editor
 ### Features
 
 - Build and Run project from Cocoa Menu
+- Inline syntax checking for MacRuby
 - View reference documentation
 - Send Support Tickets
 - View Cocoa Framework class documentation from a shortcut
