@@ -17,7 +17,7 @@ Basic RubyMotion workflow support in Redcar Editor
 
 - AppleScript - for terminal emulator interaction
 - Redcar 0.12+
-- `macruby` command on the same path as Redcar, for syntax checking
+- `macruby` executable, for syntax checking
 
 ### Installation
 
@@ -60,10 +60,12 @@ Primary Commands:
 
 - By default, Redcar+RubyMotion interprets all Ruby files in RubyMotion projects using MacRuby syntax. Set `force_macruby_grammar` to `false` to disable this option.
 
+- To change the path to the `macruby` executable, change `macruby_path` in `Cocoa` settings.
+
 ### To Do
 
 - Add reasonable keybindings
 - Add commands for testflight
 - Create pane for viewing, adding, and removing resources
 - Add preferences option to run rake commands with trace
-- Add inline documentation for cocoapod dependencies
+- Add documentation for cocoapod dependencies

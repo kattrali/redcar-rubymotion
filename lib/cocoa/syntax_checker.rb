@@ -8,7 +8,8 @@ module Redcar
         path = manifest_path(doc)
         file = File.basename(path)
         begin
-          command = "macruby -c \"#{path}\""
+          macruby = Cocoa.storage['macruby_path']
+          command = "#{macruby} -c \"#{path}\""
           pid, input, output, error = IO.popen4(command)
           error.each { |line|
             if error = create_syntax_error(doc, line, file)
