@@ -19,7 +19,7 @@ module Redcar
           item "Clean and Run", BuildAndCleanCommand
           item "Run on Device", BuildOnDeviceCommand
           item "Test", TestCommand
-          item "Stop iOS Simulator", QuitSimCommand
+          item "Close iOS Simulator", QuitSimCommand
           separator
           item "Create Archives", ArchiveCommand
           item "Create Release", ReleaseCommand
@@ -62,6 +62,7 @@ module Redcar
       osx = Redcar::Keymap.build("main", [:osx]) do
         link "Cmd+Shift+Space", ShowDocsCommand
         link "Cmd+R", BuildCommand
+        link "Cmd+Shift+R", BuildOnDeviceCommand
         link "Cmd+Ctrl+T", TestCommand
         link "Ctrl+Shift+Q", QuitSimCommand
       end
