@@ -1,11 +1,11 @@
 Redcar+RubyMotion
-=================
+-----------------
 
 Basic RubyMotion workflow support in Redcar Editor
 
-![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/screenshot.png)
+![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/redcar-rubymotion.jpg)
 
-### Features
+## Features
 
 - Build and Run project from Cocoa Menu
 - Inline syntax checking for MacRuby
@@ -13,44 +13,38 @@ Basic RubyMotion workflow support in Redcar Editor
 - Send Support Tickets
 - View Cocoa Framework class documentation from a shortcut
 
-### Requirements
+## Requirements
 
-- AppleScript - for terminal emulator interaction
+- AppleScript, for terminal emulator interaction
 - Redcar 0.12+
 - `macruby` executable, for syntax checking
 
-### Installation
+## Installation
 
 1. Close Redcar
 2. Clone this repository into `~/.redcar/plugins/rubymotion`
 3. `rm ~/.redcar/cache/textmate-bundles.cache`
 4. Start Redcar
 
-### Usage
+## Usage
 
 Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar. Syntax checking is performed on file save.
 
 Primary Commands:
 
-- *Run:* Run default `rake` command; build app and launch simulator from a terminal window
+- **Run (⌘R):** Run default `rake` command; build app and launch simulator from a terminal window
 
-- *Run on Device:* Build app and launch in attached and configured iOS device
+- **Run on Device (Shift+⌘R):** Build app and launch in attached and configured iOS device
 
-- *Test:* Run test suite
+- **Test (^⌘T):** Run test suite
+- **Quit iOS Simulator (Shift+^Q):** Close simulator
+- **Create Archives:** Create release (App Store) and development .ipa files
+- **Show Configuration:** Display `rake config` in a Web View
+- **Show Class Documentation (Shift+⌘Space):** Open class documentation in a Web View for the class name currently under the cursor.
+- *File Support Ticket:** File a ticket with RubyMotion support
+- **Reference Links:** Open developer documentation in Web Views
 
-- *Stop iOS Simulator:* Close simulator
-
-- *Create Archives:* Create release (App Store) and development .ipa files
-
-- *Show Configuration:* Display `rake config` in a Web View
-
-- *Show Class Documentation:* Open class documentation in a Web View for the class name currently under the cursor.
-
-- *File Support Ticket:* File a ticket with RubyMotion support
-
-- Reference Links: Open developer documentation in Web Views
-
-### Configuration Notes
+## Configuration Notes
 
 - To change which terminal emulator to use, set the `preferred_command_line` property in `project_plugin` preferences. I've only ever tried this with iTerm and Terminal, both seem to work fine.
 
@@ -62,10 +56,6 @@ Primary Commands:
 
 - To change the path to the `macruby` executable, change `macruby_path` in `Cocoa` settings.
 
-### To Do
+## Support
 
-- Add reasonable keybindings
-- Add commands for testflight
-- Create pane for viewing, adding, and removing resources
-- Add preferences option to run rake commands with trace
-- Add documentation for cocoapod dependencies
+- Feel free to file an issue on github if you have a bug or suggestion. :)
