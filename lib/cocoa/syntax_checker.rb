@@ -17,7 +17,9 @@ module Redcar
             end
           }
         rescue SyntaxError => e
-          create_syntax_error(doc, e.exception.message, file).annotate
+          if error = create_syntax_error(doc, e.exception.message, file)
+            error.annotate
+          end
         end
       end
 
