@@ -41,7 +41,7 @@ Primary Commands:
 - **Create Archives:** Create release (App Store) and development .ipa files
 - **Show Configuration:** Display `rake config` in a Web View
 - **Show Class Documentation (Shift+⌘Space):** Open class documentation in a Web View for the class name currently under the cursor.
-- *File Support Ticket:** File a ticket with RubyMotion support
+- **File Support Ticket:** File a ticket with RubyMotion support
 - **Reference Links:** Open developer documentation in Web Views
 
 ## Configuration Notes
