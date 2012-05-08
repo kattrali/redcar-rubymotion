@@ -35,7 +35,7 @@ module Redcar
     end
 
     def self.before_save document
-      if win = Redcar.app.focussed_window and project = Project::Manager.in_window(win)
+      if document.path && win = Redcar.app.focussed_window and project = Project::Manager.in_window(win)
         confirmation = File.join(project.path,'.redcar','macruby.project')
         if File.exists? confirmation
           check_grammar(document)
