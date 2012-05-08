@@ -9,13 +9,14 @@ module Redcar
         file = File.basename(path)
         begin
           macruby = Cocoa.storage['macruby_path']
-          command = "#{macruby} -c \"#{path}\""
+          encoding = Cocoa.storage['encoding']
+          command = "#{macruby} -E #{encoding} -c \"#{path}\""
           pid, input, output, error = IO.popen4(command)
-          error.each { |line|
+          error.each do |line|
             if error = create_syntax_error(doc, line, file)
               error.annotate
             end
-          }
+          end
         rescue SyntaxError => e
           if error = create_syntax_error(doc, e.exception.message, file)
             error.annotate

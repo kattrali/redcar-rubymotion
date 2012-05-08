@@ -73,6 +73,7 @@ module Redcar
       @storage ||= begin
         storage = Plugin::Storage.new('Cocoa')
         storage.set_default('macruby_path','/usr/local/bin/macruby')
+        storage.set_default('encoding','utf-8')
         storage.set_default('force_macruby_grammar',true)
         storage.set_default('save_project_before_running',true)
         storage
