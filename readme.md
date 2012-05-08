@@ -14,6 +14,8 @@ Basic RubyMotion workflow support in Redcar Editor
 - View Cocoa Framework class documentation from a shortcut
 - Resource Manager pane for adding, removing, and viewing project resources
 
+![Resource Manager](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/resources.png)
+
 ## Requirements
 
 - AppleScript, for terminal emulator interaction
@@ -31,7 +33,7 @@ Basic RubyMotion workflow support in Redcar Editor
 
 Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar. Syntax checking is performed on file save.
 
-![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/Menubar.jpg)
+![Cocoa Menu](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/Menubar.jpg)
 
 ### Primary Commands
 
