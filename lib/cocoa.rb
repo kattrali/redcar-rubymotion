@@ -1,8 +1,12 @@
 
 require 'cocoa/tabs'
 require 'cocoa/syntax_checker'
+require 'cocoa/resources/tree_controller'
+require 'cocoa/resources/tree_nodes'
+require 'cocoa/resources/tree_mirror'
 require 'cocoa/commands/reference'
 require 'cocoa/commands/scripting'
+require 'cocoa/commands/tree_commands'
 
 module Redcar
   class Cocoa
@@ -24,6 +28,7 @@ module Redcar
           item "Create Archives", ArchiveCommand
           item "Create Release", ReleaseCommand
           separator
+          item "Open Resources Manager", OpenResourcesTree
           item "Show Configuration", ConfigCommand
           item "Show Class Documentation", ShowDocsCommand
           item "File Support Ticket", SendTicketCommand
@@ -72,7 +77,7 @@ module Redcar
     def self.storage
       @storage ||= begin
         storage = Plugin::Storage.new('Cocoa')
-        storage.set_default('macruby_path','/usr/local/bin/macruby')
+        storage.set_default('macruby_path','/Library/RubyMotion/bin/ruby')
         storage.set_default('encoding','utf-8')
         storage.set_default('force_macruby_grammar',true)
         storage.set_default('save_project_before_running',true)

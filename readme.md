@@ -12,12 +12,13 @@ Basic RubyMotion workflow support in Redcar Editor
 - View reference documentation
 - Send Support Tickets
 - View Cocoa Framework class documentation from a shortcut
+- Resource Manager pane for adding, removing, and viewing project resources
 
 ## Requirements
 
 - AppleScript, for terminal emulator interaction
 - Redcar 0.12+
-- `macruby` executable, for syntax checking
+- RubyMotion 1.0+
 
 ## Installation
 
@@ -30,7 +31,9 @@ Basic RubyMotion workflow support in Redcar Editor
 
 Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar. Syntax checking is performed on file save.
 
-Primary Commands:
+![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/Menubar.jpg)
+
+### Primary Commands
 
 - **Run (⌘R):** Run default `rake` command; build app and launch simulator from a terminal window
 
@@ -39,6 +42,8 @@ Primary Commands:
 - **Test (^⌘T):** Run test suite
 - **Quit iOS Simulator (Shift+^Q):** Close simulator
 - **Create Archives:** Create release (App Store) and development .ipa files
+- **Open Resource Manager:** Show project resources in a tree pane, organized by type
+![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/resources.jpg)
 - **Show Configuration:** Display `rake config` in a Web View
 - **Show Class Documentation (Shift+⌘Space):** Open class documentation in a Web View for the class name currently under the cursor.
 - **File Support Ticket:** File a ticket with RubyMotion support
@@ -54,7 +59,7 @@ Primary Commands:
 
 - By default, Redcar+RubyMotion interprets all Ruby files in RubyMotion projects using MacRuby syntax. Set `force_macruby_grammar` to `false` to disable this option.
 
-- To change the path to the `macruby` executable, change `macruby_path` in `Cocoa` settings.
+- To change the path to the `ruby` executable, change `macruby_path` in `Cocoa` settings.
 
 ## Support
 
