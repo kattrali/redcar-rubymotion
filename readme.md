@@ -33,7 +33,7 @@ Basic RubyMotion workflow support in Redcar Editor
 
 Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar. Syntax checking is performed on file save.
 
-![Cocoa Menu](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/Menubar.jpg)
+![Cocoa Menu](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/Menubar.png)
 
 ### Primary Commands
 
@@ -45,7 +45,7 @@ Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar. Sy
 - **Quit iOS Simulator (Shift+^Q):** Close simulator
 - **Create Archives:** Create release (App Store) and development .ipa files
 - **Open Resource Manager:** Show project resources in a tree pane, organized by type
-![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/resources.jpg)
+![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/resources.png)
 - **Show Configuration:** Display `rake config` in a Web View
 - **Show Class Documentation (Shift+⌘Space):** Open class documentation in a Web View for the class name currently under the cursor.
 - **File Support Ticket:** File a ticket with RubyMotion support
