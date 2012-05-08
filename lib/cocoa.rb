@@ -7,6 +7,7 @@ require 'cocoa/resources/tree_mirror'
 require 'cocoa/commands/reference'
 require 'cocoa/commands/scripting'
 require 'cocoa/commands/tree_commands'
+require 'cocoa/completion_source'
 
 module Redcar
   class Cocoa
@@ -32,6 +33,7 @@ module Redcar
           item "Show Configuration", ConfigCommand
           item "Show Class Documentation", ShowDocsCommand
           item "File Support Ticket", SendTicketCommand
+          item "Generate Tags", GenerateTagsCommand
           separator
           item "RubyMotion Developer Center", ShowRMDocs
           item "iOS API Reference", ShowIOSRefDocs
@@ -55,6 +57,10 @@ module Redcar
           end
         end
       end
+    end
+
+    def self.autocompletion_source_types
+      [Cocoa::CompletionSource]
     end
 
     def self.check_grammar document

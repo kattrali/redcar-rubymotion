@@ -114,6 +114,16 @@ module Redcar
       end
     end
 
+    class GenerateTagsCommand < RunnablesCommand
+      def text
+        "rake ctags"
+      end
+
+      def output
+        "none"
+      end
+    end
+
     class QuitSimCommand < RunnablesCommand
       def text
         path = File.join(File.dirname(File.expand_path(__FILE__)),'..','..','..','scripts')
