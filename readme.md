@@ -9,12 +9,19 @@ Basic RubyMotion workflow support in Redcar Editor
 
 - Build and Run project from Cocoa Menu
 - Inline syntax checking for MacRuby
+
+![Syntax Checking](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/syntax-checking.png)
+
 - View reference documentation
 - Send Support Tickets
 - View Cocoa Framework class documentation from a shortcut
 - Resource Manager pane for adding, removing, and viewing project resources
 
 ![Resource Manager](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/resources.png)
+
+- CTags-based Autocompletion of class and method names (work in progress)
+
+![Automcompletion](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/autocompletion.png)
 
 ## Requirements
 
