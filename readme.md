@@ -31,9 +31,11 @@ Basic RubyMotion workflow support in Redcar Editor
 ## Usage
 
 Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar.
+
 ![Cocoa Menu](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/Menubar.png)
 
 Syntax checking is performed on file save.
+
 ![Syntax Checking](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/syntax-checking.png)
 
 ### Primary Commands
