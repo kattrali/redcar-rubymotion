@@ -9,18 +9,11 @@ Basic RubyMotion workflow support in Redcar Editor
 
 - Build and Run project from Cocoa Menu
 - Inline syntax checking for MacRuby
-
-![Syntax Checking](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/syntax-checking.png)
-
 - View reference documentation
 - Send Support Tickets
 - View Cocoa Framework class documentation from a shortcut
 - Resource Manager pane for adding, removing, and viewing project resources
-- CTags-based Autocompletion of class and method names (work in progress)
-
-![Automcompletion](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/autocompletion.png)
-
-[See How Autocompletion Works](http://www.screencast.com/t/CGNWXexiRCvB)
+- [CTags-based Autocompletion](http://www.screencast.com/t/CGNWXexiRCvB) of class and method names -- Objective-C methods are automatically converted to Ruby!
 
 ## Requirements
 
@@ -37,9 +30,11 @@ Basic RubyMotion workflow support in Redcar Editor
 
 ## Usage
 
-Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar. Syntax checking is performed on file save.
-
+Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar.
 ![Cocoa Menu](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/Menubar.png)
+
+Syntax checking is performed on file save.
+![Syntax Checking](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/syntax-checking.png)
 
 ### Primary Commands
 
@@ -56,6 +51,9 @@ Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar. Sy
 - **Show Class Documentation (Shift+⌘Space):** Open class documentation in a Web View for the class name currently under the cursor.
 - **File Support Ticket:** File a ticket with RubyMotion support
 - **Reference Links:** Open developer documentation in Web Views
+- **Menu Autocompletion:** Press `Shift+^Space` or select Menu Auto Complete from the Edit menu
+
+![Automcompletion](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/autocompletion.png)
 
 ## Configuration Notes
 
