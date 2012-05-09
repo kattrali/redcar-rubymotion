@@ -20,6 +20,8 @@ Basic RubyMotion workflow support in Redcar Editor
 
 ![Automcompletion](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/autocompletion.png)
 
+[See How Autocompletion Works](http://www.screencast.com/t/CGNWXexiRCvB)
+
 ## Requirements
 
 - AppleScript, for terminal emulator interaction
