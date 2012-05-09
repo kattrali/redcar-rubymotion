@@ -1,13 +1,14 @@
 
 require 'cocoa/tabs'
 require 'cocoa/syntax_checker'
+require 'cocoa/autocompletion/completion_source'
+require 'cocoa/autocompletion/list_dialog'
 require 'cocoa/resources/tree_controller'
 require 'cocoa/resources/tree_nodes'
 require 'cocoa/resources/tree_mirror'
 require 'cocoa/commands/reference'
 require 'cocoa/commands/scripting'
 require 'cocoa/commands/tree_commands'
-require 'cocoa/completion_source'
 
 module Redcar
   class Cocoa

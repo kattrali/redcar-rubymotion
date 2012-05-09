@@ -11,7 +11,6 @@ module Redcar
           tags = CompletionSource.project_tags(@project)
           tags.keys.each do |tag|
             if tag[0..(prefix.length-1)] == prefix
-              tag = CompletionSource.convert_objc(tag) if tag.include?(":") && tag =~ /^(\w+:)+$/
               word_list.add_word(tag, 10001)
             end
           end
@@ -21,10 +20,6 @@ module Redcar
 
       def self.tags_file(project)
         File.join(project.path,'tags')
-      end
-
-      def self.convert_objc(method)
-        method.sub(/^(\w+):(.*)/,"\\1(param,\\2)").gsub(":",":param,").sub(",)",")")
       end
 
       def self.project_tags(project)
