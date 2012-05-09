@@ -26,7 +26,7 @@
     <div class="wrapper">
       <header>
         <h1>Redcar+RubyMotion</h1>
-        <p>RubyMotion workflow support in Redcar Editor</p>
+        <p><a href="http://rubymotion.com">RubyMotion</a> workflow support in <a href="http://redcareditor.com">Redcar Editor</a></p>
         <p class="view"><a href="https://github.com/kattrali/redcar-rubymotion">View the Project on GitHub <small>kattrali/redcar-rubymotion</small></a></p>
         <ul>
           <li><a href="https://github.com/kattrali/redcar-rubymotion/zipball/master">Download <strong>ZIP File</strong></a></li>
@@ -42,20 +42,13 @@
 <ul>
 <li>Build, Run, and Test Projects</li>
 <li>Inline syntax checking for MacRuby</li>
-</ul>
-<p>
-  <img src="https://github.com/kattrali/redcar-rubymotion/raw/master/docs/syntax-checking.png"/>
-</p>
-<ul>
 <li>View RubyMotion and iOS reference documentation</li>
 <li>Send Support Tickets</li>
 <li>View Cocoa Framework class documentation from a shortcut</li>
 <li>Resource Manager pane for adding, removing, and viewing project resources</li>
-<li>CTags-based Autocompletion of class and method names (work in progress)</li>
+<li><a href="http://www.screencast.com/t/CGNWXexiRCvB">CTags-based Autocompletion of class and method names</a> -- Objective-C methods are automatically converted to Ruby!</li>
 </ul>
-<p>
-  <img src="https://github.com/kattrali/redcar-rubymotion/raw/master/docs/autocompletion.png"/>
-</p>
+
 <h2>Requirements</h2>
 
 <ul>
@@ -75,8 +68,9 @@
 <h2>Usage</h2>
 
 <p>Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar.</p>
-<p>Syntax checking is performed on file save, and generates red squiggly lines when a syntax error is found. Hovering over the error icon will show the error message.</p>
 <p><img src="https://github.com/kattrali/redcar-rubymotion/raw/master/docs/Menubar.png"/></p>
+<p>Syntax checking is performed on file save, and generates red squiggly lines when a syntax error is found. Hovering over the error icon will show the error message.</p>
+<p><img src="https://github.com/kattrali/redcar-rubymotion/raw/master/docs/syntax-checking.png"/></p>
 
 <h3>Primary Commands:</h3>
 
@@ -96,7 +90,11 @@
 <li><p><strong>Show Class Documentation:</strong> Open class documentation in a Web View for the class name currently under the cursor.</p></li>
 <li><p><strong>File Support Ticket:</strong> File a ticket with RubyMotion support team</p></li>
 <li><p><strong>Reference Links:</strong> Open developer documentation in Web Views</p></li>
-</ul><h2>Configuration Notes</h2>
+<li><p><strong>Menu Autocompletion:</strong> Press <code>Ctrl+Shift+Space</code> or select Menu Auto Complete from the Edit Menu</p></li>
+</ul>
+<p><img src="https://github.com/kattrali/redcar-rubymotion/raw/master/docs/autocompletion.png"/></p>
+
+<h2>Configuration Notes</h2>
 
 <ul>
 <li><p>To change which terminal emulator to use, set the <code>preferred_command_line</code> property in <code>project_plugin</code> preferences. I've only ever tried this with iTerm and Terminal, both seem to work fine.</p></li>
