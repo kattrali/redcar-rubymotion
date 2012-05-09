@@ -41,9 +41,9 @@ module Redcar
             {}
           end
         else
-          Redcar::Application::Dialog.message_box(
-          "No 'tags' file found for project. Generate a tags file by running 'rake ctags' in the root of the project",
-          "Uh oh")
+          # Redcar::Application::Dialog.message_box(
+          # "No 'tags' file found for project. Generate a tags file by running 'rake ctags' in the root of the project",
+          # "Uh oh")
           {}
         end
       end
