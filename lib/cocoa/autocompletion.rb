@@ -5,7 +5,7 @@ module Redcar
       # Are Cocoa-type completions valid in a given
       # document?
       def self.supported? document
-        supported_grammars.include? doc.edit_view.grammar
+        supported_grammars.include? document.edit_view.grammar
       end
 
       # Are there any Objective-C methods detected in
@@ -21,6 +21,7 @@ module Redcar
 
       # Regular expression for matching Objective-C methods
       def self.objc_matcher find_in_line=false
+        matcher = '((\w+:)+)'
         find_in_line ? /#{matcher}/ : /^#{matcher}$/
       end
 
@@ -28,7 +29,6 @@ module Redcar
       # occurrence of an Objectve-C method. `find_in_line`
       # determines whether to consider partial matches
       def self.parse_objc text, find_in_line=false
-        matcher = '((\w+:)+)'
         regex = objc_matcher(find_in_line)
         if match = regex.match(text)
           {
@@ -39,12 +39,12 @@ module Redcar
       end
 
       # Convert an Objective-C method tag into a snippet
-      def self.method_to_snippet method
+      def self.method_to_snippet method, tab=nil
         args = method.split(':')
         text = args.each_with_index.map do |arg,i|
-          "#{a}:${#{i+1}:param}"
+          "#{arg}:${#{i+1}:param#{i+1}}"
         end.join(", ").sub(/:(.*)/,"(\\1)")
-        Redcar::Snippets::Snippet.new(nil, text)
+        Redcar::Snippets::Snippet.new(nil, text, :tab => tab)
       end
     end
   end
