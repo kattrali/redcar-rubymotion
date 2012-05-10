@@ -10,6 +10,7 @@ module Redcar
           word_list = Redcar::AutoCompleter::WordList.new
           tags = CompletionSource.project_tags(@project)
           tags.keys.each do |tag|
+          tags.keys.sort_by{|tag| tag.downcase}.each do |tag|
             if tag[0..(prefix.length-1)] == prefix
               word_list.add_word(tag, 10001)
             end
