@@ -4,26 +4,36 @@ module Redcar
     class TreeMirror
       include Redcar::Tree::Mirror
 
+      def self.tree_title
+        "Resources"
+      end
+
       def initialize(project)
         @project = project
       end
 
+      # the default path for resource file, relative
+      # to the current project
       def resource_files_path
          File.join(@project.path,'resources')
       end
 
+      # all files in the resource directory and subdirectories
       def files
         Dir[File.join(resource_files_path,'**/*.*')]
       end
 
       def title
-        "Resources"
+        TreeMirror.tree_title
       end
 
+      # top-level nodes in the tree
       def top
         load
       end
 
+      # remove a given node from the tree.
+      # changes are not reflected until the tree is refreshed
       def remove_node node
         @resources.reject! {|n| n.path == node.path }
         @resources.each do |n|
@@ -31,6 +41,7 @@ module Redcar
         end
       end
 
+      # Add a file to the tree
       def add_file path
         unless all_leaves.map {|n|n.path}.include? path
           node = ResourceNode.new(path)
@@ -44,21 +55,41 @@ module Redcar
           else
             @resources << node
           end
-          sort
+          organize_tree
         end
       end
 
+      # check for added or removed nodes
       def refresh
-        unless files == all_leaves.map {|n|n.path}
-          @resources = nil
-          load
+        unadded = files.select do |f|
+          all_leaves.detect {|n| n.path == f}.nil?
         end
+        deleted = all_leaves.select do |node|
+          !files.include?(node.path)
+        end
+        deleted.each {|n| remove_node(n)}
+        unadded.each {|f| add_file(f)}
+        organize_tree
       end
 
-      def sort
-        @resources = @resources.sort_by {|n| n.text.downcase }.sort_by {|n| n.is_a?(DirNode) ? 0 : 1 }
+      # sort tree nodes by name and type (directories first)
+      # and remove any empty directories
+      def organize_tree
+        @resources = @resources.sort_by {|n|
+          n.text.downcase
+        }.sort_by {|n|
+          n.is_a?(DirNode) ? 0 : 1
+        }.select {|n|
+          n.is_a?(ResourceNode) or n.children.size > 0
+        }
       end
 
+      # all directory nodes in the tree
+      def dirnodes
+        @resources.select {|n| n.is_a? DirNode }
+      end
+
+      # all file nodes in the tree
       def all_leaves
         @resources.map do |n|
           if n.is_a? ResourceNode
@@ -68,6 +99,8 @@ module Redcar
           end
         end.flatten
       end
+
+      # parse resource paths and generate nodes
       def load
         unless @resources
           @resources = []
@@ -81,8 +114,7 @@ module Redcar
                 end
               end
               @resources += child_nodes
-              @resources.reject! {|n| n.is_a?(Cocoa::DirNode) and n.children.size == 0}
-              sort
+              organize_tree
             rescue Object => e
               Redcar::Application::Dialog.message_box(
                 "There was an error parsing the resources file list: #{e.message}")

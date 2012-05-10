@@ -5,10 +5,37 @@ module Redcar
       include Redcar::Tree::Controller
       include Redcar::Project::LocalFilesystem
 
+      def initialize(tree_mirror)
+        @mirror = tree_mirror
+        attach_listeners
+      end
+
+      # Open selected node path in default application
+      # on double-click
       def activated(tree, node)
         Redcar::OpenDefaultApp::OpenDefaultAppCommand.new(node.path).run if node
       end
 
+      # Attach change listeners to determine whether resource
+      # files have been added or deleted. Checks are performed
+      # when window or tree gains focus
+      def attach_listeners
+        Redcar.app.add_listener(:window_focussed) do |win|
+          if tree = win.treebook.trees.detect {|t| t.tree_mirror == @mirror }
+            @mirror.refresh
+            tree.refresh
+          end
+        end
+        win = Redcar.app.focussed_window
+        win.treebook.add_listener(:tree_focussed) do |tree|
+          if tree.tree_mirror == @mirror
+            @mirror.refresh
+            tree.refresh
+          end
+        end
+      end
+
+      # Show a context menu on click
       def right_click(tree, node)
         controller = self
         menu = Menu::Builder.build do
