@@ -61,6 +61,9 @@ module Redcar
       end
     end
 
+    def self.tab_handlers
+      [Cocoa::TabHandler]
+    end
     def self.autocompletion_source_types
       [Cocoa::CompletionSource]
     end
