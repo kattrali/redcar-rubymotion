@@ -116,6 +116,7 @@ module Redcar
 
     class GenerateTagsCommand < RunnablesCommand
       def text
+        CompletionSource.clear_cache(project)
         "rake ctags"
       end
 
