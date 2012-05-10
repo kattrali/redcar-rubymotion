@@ -1,6 +1,7 @@
 
 require 'cocoa/tabs'
 require 'cocoa/syntax_checker'
+require 'cocoa/autocompletion'
 require 'cocoa/autocompletion/completion_source'
 require 'cocoa/autocompletion/list_dialog'
 require 'cocoa/resources/tree_controller'

@@ -5,11 +5,12 @@ module Redcar
         @project = project
       end
 
+      # a Redcar::AutoCompleter::WordList of autocompletions
+      # based on a given prefix
       def alternatives(prefix)
         if @project
           word_list = Redcar::AutoCompleter::WordList.new
           tags = CompletionSource.project_tags(@project)
-          tags.keys.each do |tag|
           tags.keys.sort_by{|tag| tag.downcase}.each do |tag|
             if tag[0..(prefix.length-1)] == prefix
               word_list.add_word(tag, 10001)
@@ -19,10 +20,17 @@ module Redcar
         end
       end
 
+      # the default location of a tags file within a project
       def self.tags_file(project)
         File.join(project.path,'tags')
       end
 
+      # clear cached version of a project's tags
+      def self.clear_cache(project)
+        @tags_for_path[tags_file(project)] = nil
+      end
+
+      # A hash of a project's ctags, divided by token
       def self.project_tags(project)
         path = tags_file(project)
         Cocoa::GenerateTagsCommand.new.run unless File.exists?(path)
@@ -42,9 +50,6 @@ module Redcar
             {}
           end
         else
-          # Redcar::Application::Dialog.message_box(
-          # "No 'tags' file found for project. Generate a tags file by running 'rake ctags' in the root of the project",
-          # "Uh oh")
           {}
         end
       end
