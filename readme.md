@@ -25,7 +25,7 @@ Basic RubyMotion workflow support in Redcar Editor
 
 1. Close Redcar
 2. Clone this repository into `~/.redcar/plugins/rubymotion`
-3. `rm ~/.redcar/cache/textmate-bundles.cache`
+3. `rm ~/.redcar/cache/textmate-bundles.cache` (only necessary if you do not already have a MacRuby bundle installed in ~/.redcar/Bundles)
 4. Start Redcar
 
 ## Usage
@@ -55,7 +55,11 @@ Syntax checking is performed on file save.
 - **Reference Links:** Open developer documentation in Web Views
 - **Menu Autocompletion:** Press `Shift+^Space` or select Menu Auto Complete from the Edit menu
 
-![Automcompletion](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/autocompletion.png)
+![Class Automcompletion](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/class-autocompletion.png)
+
+![Method Automcompletion (before)](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/method-autocompletion-before.png)
+
+![Method Automcompletion (after)](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/method-autocompletion-after.png)
 
 ## Configuration Notes
 
