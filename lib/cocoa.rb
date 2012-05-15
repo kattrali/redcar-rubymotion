@@ -34,7 +34,7 @@ module Redcar
           separator
           item "Open Resources Manager", OpenResourcesTree
           item "Show Configuration", ConfigCommand
-          item "Show Class Documentation", ShowDocsCommand
+          item "Show Class Documentation", IngredientsLookupCommand
           item "File Support Ticket", SendTicketCommand
           item "Generate Tags", GenerateTagsCommand
           separator
@@ -77,7 +77,7 @@ module Redcar
 
     def self.keymaps
       osx = Redcar::Keymap.build("main", [:osx]) do
-        link "Cmd+Shift+Space", ShowDocsCommand
+        link "Cmd+Shift+Space", IngredientsLookupCommand
         link "Cmd+R", BuildCommand
         link "Cmd+Shift+R", BuildOnDeviceCommand
         link "Cmd+Ctrl+T", TestCommand

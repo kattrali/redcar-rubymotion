@@ -125,6 +125,27 @@ module Redcar
       end
     end
 
+    class IngredientsLookupCommand < DocumentCommand
+      def text
+        word = doc.current_word
+        <<-BASH.gsub(/^\s*/, '')
+          osascript <<END
+            tell application "Ingredients"
+              search front window query "#{word}"
+              activate
+            end tell
+          END
+        BASH
+      end
+
+      def execute
+        word = text
+        Thread.new do
+          system("#{word}")
+        end
+      end
+    end
+
     class QuitSimCommand < RunnablesCommand
       def text
         path = File.join(File.dirname(File.expand_path(__FILE__)),'..','..','..','scripts')
