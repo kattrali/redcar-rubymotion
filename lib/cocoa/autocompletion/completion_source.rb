@@ -27,7 +27,7 @@ module Redcar
 
       # clear cached version of a project's tags
       def self.clear_cache(project)
-        @tags_for_path[tags_file(project)] = nil
+        @tags_for_path[tags_file(project)] = nil if @tags_for_path
       end
 
       # A hash of a project's ctags, divided by token
