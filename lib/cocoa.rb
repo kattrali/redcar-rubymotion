@@ -92,6 +92,7 @@ module Redcar
         storage.set_default('macruby_path','/Library/RubyMotion/bin/ruby')
         storage.set_default('encoding','utf-8')
         storage.set_default('force_macruby_grammar',true)
+        storage.set_default('ingredients_path','/Applications/Ingredients.app')
         storage.set_default('save_project_before_running',true)
         storage
       end

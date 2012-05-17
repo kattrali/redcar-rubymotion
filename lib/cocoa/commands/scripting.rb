@@ -139,9 +139,14 @@ module Redcar
       end
 
       def execute
-        word = text
-        Thread.new do
-          system("#{word}")
+        if File.exists?(Cocoa.storage['ingredients_path'])
+          word = text
+          Thread.new do
+            system("#{word}")
+          end
+        else
+          Redcar::Application::Dialog.message_box(
+           "Ingredients app is not installed. It is available (for free) from http://fileability.net/ingredients/.", "Documentation Reference Failed")
         end
       end
     end
