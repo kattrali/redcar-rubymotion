@@ -30,7 +30,7 @@
         <p class="view"><a href="https://github.com/kattrali/redcar-rubymotion">View the Project on GitHub <small>kattrali/redcar-rubymotion</small></a></p>
         <ul>
           <li><a href="https://github.com/kattrali/redcar-rubymotion/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/kattrali/redcar-rubymotion/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/kattrali/redcar-rubymotion/raw/master/notes.md">View <strong>Release Notes</strong></a></li>
           <li><a href="https://github.com/kattrali/redcar-rubymotion/issues">File an <strong>Issue</strong></a></li>
         </ul>
       </header>
@@ -44,7 +44,7 @@
 <li>Inline syntax checking for MacRuby</li>
 <li>View RubyMotion and iOS reference documentation</li>
 <li>Send Support Tickets</li>
-<li>View Cocoa Framework class documentation from a shortcut</li>
+<li>View documentation for focussed or selected text</li>
 <li>Resource Manager pane for adding, removing, and viewing project resources</li>
 <li><a href="http://www.screencast.com/t/CGNWXexiRCvB">CTags-based Autocompletion of class and method names</a> -- Objective-C methods are automatically converted to Ruby!</li>
 </ul>
@@ -55,16 +55,26 @@
 <li>AppleScript - for terminal emulator and iOS Simulator interaction</li>
 <li>Redcar 0.12+</li>
 <li>RubyMotion 1.0+</li>
+<li><a href="http://fileability.net/ingredients/">Ingredients</a>, for documentation lookup</li>
 </ul>
 <h2>Installation</h2>
-
+<h3>Fresh Install</h3>
 <ol>
 <li>Close Redcar</li>
 <li>Clone this repository into <code>~/.redcar/plugins/rubymotion</code>
 </li>
-<li><code>rm ~/.redcar/cache/textmate-bundles.cache</code></li>
+<li><code>rm ~/.redcar/cache/textmate-bundles.cache</code> (Only necessary if there is a not a MacRuby or RubyMotion TextMate bundle installed in <code>~/.redcar/Bundles</code>)</li>
 <li>Start Redcar</li>
 </ol>
+
+<h3>Upgrade</h3>
+<ol>
+<li>Close Redcar</li>
+<li>Run <code>git pull</code> in <code>~/.redcar/plugins/rubymotion</code>
+</li>
+<li>Start Redcar</li>
+</ol>
+
 <h2>Usage</h2>
 
 <p>Installing this plugin will add a new 'Cocoa' submenu to the Redcar menu bar.</p>
@@ -87,7 +97,12 @@
 </p>
 <ul>
 <li><p><strong>Show Configuration:</strong> Display <code>rake config</code> in a Web View</p></li>
-<li><p><strong>Show Class Documentation:</strong> Open class documentation in a Web View for the class name currently under the cursor.</p></li>
+<li><p><strong>Show Documentation:</strong> Open documentation in Ingredients app, a (free) Cocoa Documentation Viewer, for the word currently under the cursor.</p></li>
+</ul>
+<p>
+  <img src="https://github.com/kattrali/redcar-rubymotion/raw/master/docs/documentation-lookup.png"/>
+</p>
+<ul>
 <li><p><strong>File Support Ticket:</strong> File a ticket with RubyMotion support team</p></li>
 <li><p><strong>Reference Links:</strong> Open developer documentation in Web Views</p></li>
 <li><p><strong>Menu Autocompletion:</strong> Press <code>Ctrl+Shift+Space</code> or select Menu Auto Complete from the Edit Menu</p></li>
