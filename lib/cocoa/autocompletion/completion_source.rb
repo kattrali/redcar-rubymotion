@@ -13,7 +13,7 @@ module Redcar
           tags = CompletionSource.project_tags(@project)
           tags.keys.sort_by{|tag| tag.downcase}.each do |tag|
             if tag[0..(prefix.length-1)] == prefix
-              word_list.add_word(tag, 10001)
+              word_list.add_word(tag, 100000)
             end
           end
           word_list
