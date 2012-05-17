@@ -81,7 +81,9 @@ Syntax checking is performed on file save.
 
 - By default, Redcar+RubyMotion interprets all Ruby files in RubyMotion projects using MacRuby syntax. Set `force_macruby_grammar` to `false` to disable this option.
 
-- To change the path to the `ruby` executable, change `macruby_path` in `Cocoa` settings.
+- To change the path to the `ruby` executable, change `macruby_path` in `Cocoa` preferences.
+
+- To change the path to Ingredients app, change `ingredients_path` in `Cocoa` preferences.
 
 ## Support
 
