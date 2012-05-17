@@ -34,7 +34,7 @@ Basic RubyMotion workflow support in Redcar Editor
 ### Upgrade
 
 1. Close Redcar
-2. Run `git fetch origin && git checkout 0.6` from `~/.redcar/plugins/rubymotion`
+2. Run `git fetch origin && git checkout 0.6.1` from `~/.redcar/plugins/rubymotion`
 3. Start Redcar
 
 ## Usage
@@ -85,7 +85,7 @@ Syntax checking is performed on file save.
 
 - To change the path to the `ruby` executable, change `macruby_path` in `Cocoa` preferences.
 
-- To change the path to Ingredients app, change `ingredients_path` in `Cocoa` preferences.
+- To change the path to Ingredients or Dash apps, change `ingredients_path` or `dash_app` in `Cocoa` preferences.
 
 ## Support
 
