@@ -9,9 +9,9 @@ Basic RubyMotion workflow support in Redcar Editor
 
 - Build and Run project from Cocoa Menu
 - Inline syntax checking for MacRuby
-- View reference documentation
+- Lookup documentation for focussed text
 - Send Support Tickets
-- View Cocoa Framework class documentation from a shortcut
+- View RubyMotion and iOS reference documentation
 - Resource Manager pane for adding, removing, and viewing project resources
 - [CTags-based Autocompletion](http://www.screencast.com/t/CGNWXexiRCvB) of class and method names -- Objective-C methods are automatically converted to Ruby!
 
@@ -20,6 +20,7 @@ Basic RubyMotion workflow support in Redcar Editor
 - AppleScript, for terminal emulator interaction
 - Redcar 0.12+
 - RubyMotion 1.0+
+- [Ingredients](http://fileability.net/ingredients/), for documentation lookup
 
 ## Installation
 
@@ -50,7 +51,8 @@ Syntax checking is performed on file save.
 - **Open Resource Manager:** Show project resources in a tree pane, organized by type
 ![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/resources.png)
 - **Show Configuration:** Display `rake config` in a Web View
-- **Show Class Documentation (Shift+⌘Space):** Open class documentation in a Web View for the class name currently under the cursor.
+- **Show Documentation (Shift+⌘Space):** Open documentation for selected or focussed text in [Ingredients](http://fileability.net/ingredients/), a Cocoa Documentation Viewer.
+![Documentation Lookup](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/documentation-lookup.png)
 - **File Support Ticket:** File a ticket with RubyMotion support
 - **Reference Links:** Open developer documentation in Web Views
 - **Menu Autocompletion:** Press `Shift+^Space` or select Menu Auto Complete from the Edit menu

@@ -1,6 +1,10 @@
 Release Notes
 =============
 
+### 0.6
+
+- [Feature] Added speedy documentation lookup via [Ingredients](http://fileability.net/ingredients/) app
+
 ### 0.5
 
 - [Feature] Autocompletion of Cocoa framework class names and methods
