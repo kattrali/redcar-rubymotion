@@ -124,28 +124,51 @@ module Redcar
       end
     end
 
-    class IngredientsLookupCommand < DocumentCommand
+    class DocsLookupCommand < DocumentCommand
+
+      def self.supported_apps
+        ["Dash","Ingredients"]
+      end
+
       def text
         word = doc.current_word
-        <<-BASH.gsub(/^\s*/, '')
-          osascript <<END
-            tell application "Ingredients"
-              search front window query "#{word}"
-              activate
-            end tell
-          END
-        BASH
+        case launcher
+        when "Ingredients"
+          <<-BASH.gsub(/^\s*/, '')
+            osascript <<END
+              tell application "Ingredients"
+                search front window query "#{word}"
+                activate
+              end tell
+            END
+          BASH
+        when "Dash"
+          "open dash://#{word}"
+        else
+          Redcar::Application::Dialog.message_box(
+            "The selected documentation launcher is not supported. Please update Preferences > Cocoa > documentation_launcher. \
+            Supported launchers: #{DocsLookupCommand.supported_apps.join(', ')}.",
+            "Documentation Reference Failed")
+          ""
+        end
+      end
+
+      def launcher
+        @launcher ||= Cocoa.storage['documentation_launcher']
       end
 
       def execute
-        if File.exists?(Cocoa.storage['ingredients_path'])
-          word = text
-          Thread.new do
-            system("#{word}")
+        path = "#{launcher.downcase}_path"
+        if File.exists?(Cocoa.storage[path])
+          if command = text
+            Thread.new do
+              system("#{command}")
+            end
           end
         else
           Redcar::Application::Dialog.message_box(
-           "Ingredients app is not installed or not available at the location configured in Preferences > Cocoa. It is available (for free) from http://fileability.net/ingredients/.", "Documentation Reference Failed")
+            "#{launcher} app is not installed or not found at the configured location in Preferences > Cocoa > #{path}. Please install it or update your settings",
+            "Documentation Reference Failed")
         end
       end
     end

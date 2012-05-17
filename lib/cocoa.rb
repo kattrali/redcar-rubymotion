@@ -34,7 +34,14 @@ module Redcar
           separator
           item "Open Resources Manager", OpenResourcesTree
           item "Show Configuration", ConfigCommand
-          item "Show Class Documentation", IngredientsLookupCommand
+          item "Show Documentation", DocsLookupCommand
+          lazy_sub_menu "Documentation Launcher" do
+            DocsLookupCommand.supported_apps.each do |app|
+              item app, :type => :radio, :checked => Cocoa.storage['documentation_launcher'] == app do
+                Cocoa.storage['documentation_launcher'] = app
+              end
+            end
+          end
           item "File Support Ticket", SendTicketCommand
           item "Generate Tags", GenerateTagsCommand
           separator
@@ -77,7 +84,7 @@ module Redcar
 
     def self.keymaps
       osx = Redcar::Keymap.build("main", [:osx]) do
-        link "Cmd+Shift+Space", IngredientsLookupCommand
+        link "Cmd+Shift+Space", DocsLookupCommand
         link "Cmd+R", BuildCommand
         link "Cmd+Shift+R", BuildOnDeviceCommand
         link "Cmd+Ctrl+T", TestCommand
@@ -92,8 +99,10 @@ module Redcar
         storage.set_default('macruby_path','/Library/RubyMotion/bin/ruby')
         storage.set_default('encoding','utf-8')
         storage.set_default('force_macruby_grammar',true)
+        storage.set_default('dash_path','/Applications/Dash.app')
         storage.set_default('ingredients_path','/Applications/Ingredients.app')
         storage.set_default('save_project_before_running',true)
+        storage.set_default('documentation_launcher','Ingredients')
         storage
       end
     end

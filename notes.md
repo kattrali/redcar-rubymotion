@@ -1,6 +1,10 @@
 Release Notes
 =============
 
+### 0.6.1
+
+- [Feature] Added support for documentation lookup via [Dash](http://kapeli.com/dash/) app
+
 ### 0.6
 
 - [Feature] Added speedy documentation lookup via [Ingredients](http://fileability.net/ingredients/) app
