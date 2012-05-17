@@ -1,4 +1,3 @@
-
 module Redcar
   class Cocoa
     class AppleScriptCommand < ProjectCommand
@@ -146,7 +145,7 @@ module Redcar
           end
         else
           Redcar::Application::Dialog.message_box(
-           "Ingredients app is not installed. It is available (for free) from http://fileability.net/ingredients/.", "Documentation Reference Failed")
+           "Ingredients app is not installed or not available at the location configured in Preferences > Cocoa. It is available (for free) from http://fileability.net/ingredients/.", "Documentation Reference Failed")
         end
       end
     end
