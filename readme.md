@@ -24,10 +24,18 @@ Basic RubyMotion workflow support in Redcar Editor
 
 ## Installation
 
+### Fresh Install
+
 1. Close Redcar
 2. Clone this repository into `~/.redcar/plugins/rubymotion`
 3. `rm ~/.redcar/cache/textmate-bundles.cache` (only necessary if you do not already have a MacRuby bundle installed in ~/.redcar/Bundles)
 4. Start Redcar
+
+### Upgrade
+
+1. Close Redcar
+2. Run `git fetch origin && git checkout 0.6` from `~/.redcar/plugins/rubymotion`
+3. Start Redcar
 
 ## Usage
 
