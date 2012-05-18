@@ -1,6 +1,14 @@
 Release Notes
 =============
 
+### 0.7
+
+- [Enhancement] Maintain a single session for running commands in iTerm (with thanks to AaronH!)
+- [Feature] Added option to run rake commands with `--trace`
+- [Enhancement] Added "Build Options" to menu for easier access
+- Reorganized the `Cocoa` menu
+
+
 ### 0.6.1
 
 - [Feature] Added support for documentation lookup via [Dash](http://kapeli.com/dash/) app

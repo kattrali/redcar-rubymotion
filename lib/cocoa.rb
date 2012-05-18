@@ -20,6 +20,8 @@ module Redcar
         # sub_menu "File" do
         #   sub_menu "New...", :priority => 1 do
         #     item "RubyMotion App", CreateProjectCommand
+        #     item "UIView Controller" { }
+        #     item "UITableView Controller" { }
         #   end
         # end
         sub_menu "Cocoa", :priority => 10 do
@@ -27,26 +29,45 @@ module Redcar
           item "Clean and Run", BuildAndCleanCommand
           item "Run on Device", BuildOnDeviceCommand
           item "Test", TestCommand
-          item "Close iOS Simulator", QuitSimCommand
+          sub_menu "Simulator" do
+            item "Stop", StopSimulatorCommand
+            item "Quit", QuitSimulatorCommand
+            item "Home", HomeSimulatorCommand
+          end
+          lazy_sub_menu "Build Options" do
+            item "Run rake commands with --trace", :type => :check, :checked => !!Cocoa.storage['run_with_trace'] do
+              Cocoa.storage['run_with_trace'] = !Cocoa.storage['run_with_trace']
+            end
+            # item "Use MacRuby syntax", :type => :check, :checked => !!Cocoa.storage['force_macruby_grammar'] do
+            #   Cocoa.storage['force_macruby_grammar'] = !Cocoa.storage['force_macruby_grammar']
+            # end
+            item "Save open files before each run", :type => :check, :checked => !!Cocoa.storage['save_project_before_running'] do
+              Cocoa.storage['save_project_before_running'] = !Cocoa.storage['save_project_before_running']
+            end
+          end
           separator
-          item "Create Archives", ArchiveCommand
-          item "Create Release", ReleaseCommand
-          separator
-          item "Open Resources Manager", OpenResourcesTree
-          item "Show Configuration", ConfigCommand
-          item "Show Documentation", DocsLookupCommand
-          lazy_sub_menu "Documentation Launcher" do
+          sub_menu "Documentation" do
+            item "Show Documentation for Text", DocsLookupCommand
+            separator
+            item "Documentation Launcher", Redcar::Top::ShowTitle
             DocsLookupCommand.supported_apps.each do |app|
               item app, :type => :radio, :checked => Cocoa.storage['documentation_launcher'] == app do
                 Cocoa.storage['documentation_launcher'] = app
               end
             end
           end
-          item "File Support Ticket", SendTicketCommand
+          separator
+          item "Create Archives", ArchiveCommand
+          item "Create Release", ReleaseCommand
+          separator
+          item "Open Resources Manager", OpenResourcesTree
+          item "Show Configuration", ConfigCommand
           item "Generate Tags", GenerateTagsCommand
           separator
           item "RubyMotion Developer Center", ShowRMDocs
           item "iOS API Reference", ShowIOSRefDocs
+          separator
+          item "File Support Ticket", SendTicketCommand
         end
       end
     end
@@ -88,7 +109,9 @@ module Redcar
         link "Cmd+R", BuildCommand
         link "Cmd+Shift+R", BuildOnDeviceCommand
         link "Cmd+Ctrl+T", TestCommand
-        link "Ctrl+Shift+Q", QuitSimCommand
+        link "Ctrl+Shift+Q", QuitSimulatorCommand
+        link "Ctrl+Shift+S", StopSimulatorCommand
+        link "Ctrl+Shift+H", HomeSimulatorCommand
       end
       [osx]
     end
@@ -103,6 +126,7 @@ module Redcar
         storage.set_default('ingredients_path','/Applications/Ingredients.app')
         storage.set_default('save_project_before_running',true)
         storage.set_default('documentation_launcher','Ingredients')
+        storage.set_default('run_with_trace',false)
         storage
       end
     end

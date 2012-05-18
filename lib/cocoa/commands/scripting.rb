@@ -5,12 +5,22 @@ module Redcar
         "echo 'Hello World'"
       end
 
+      def trace?
+        !!Cocoa.storage['run_with_trace']
+      end
+
+      def suppress_trace?
+        false
+      end
+
       def execute
-        if Cocoa.storage['save_project_before_running'] == true
+        if !!Cocoa.storage['save_project_before_running']
           win = Redcar.app.focussed_window
           win.notebooks.each do |notebook|
             notebook.tabs.each do |tab|
-              tab.edit_view.document.save! if tab.is_a?(EditTab) and tab.edit_view.document.modified?
+              if tab.is_a?(EditTab) and tab.edit_view.document.modified?
+                tab.edit_view.document.save!
+              end
             end
           end
         end
@@ -21,18 +31,33 @@ module Redcar
       end
 
       def terminal_script(preferred, new_session=false)
+        rakecmd = text
+        rakecmd << " --trace" if trace? and not suppress_trace?
         if preferred.start_with? "iTerm"
           <<-OSASCRIPT
             tell the first terminal
-              launch session "Default Session"
+              set isSet to "no"
+              repeat with _session in sessions
+                select _session
+                tell _session
+                  set theProcess to the first word of (name as text)
+                  if theProcess = "RubyMotion" and isSet = "no"
+                    set isSet to "yes"
+                    write text "quit"
+                  end if
+                end tell
+              end repeat
+              if isSet = "no"
+                launch session "Default Session"
+              end
               tell the last session
                 set name to "RubyMotion"
-                write text "cd \\"#{project.path}\\";#{text}"
+                write text "cd \\"#{project.path}\\";#{rakecmd}"
               end tell
             end tell
           OSASCRIPT
         else
-          %{ do script "cd \\"#{project.path}\\";#{text}" }
+          %{ do script "cd \\"#{project.path}\\";#{rakecmd}" }
         end
       end
 
@@ -50,6 +75,10 @@ module Redcar
     end
 
     class RunnablesCommand < ProjectCommand
+      def scripts_path
+        File.join(File.dirname(File.expand_path(__FILE__)),'..','..','..','scripts')
+      end
+
       def text
         "echo 'hello world'"
       end
@@ -124,64 +153,29 @@ module Redcar
       end
     end
 
-    class DocsLookupCommand < DocumentCommand
-
-      def self.supported_apps
-        ["Dash","Ingredients"]
-      end
-
+    class StopSimulatorCommand < RunnablesCommand
       def text
-        word = doc.current_word
-        case launcher
-        when "Ingredients"
-          <<-BASH.gsub(/^\s*/, '')
-            osascript <<END
-              tell application "Ingredients"
-                search front window query "#{word}"
-                activate
-              end tell
-            END
-          BASH
-        when "Dash"
-          "open dash://#{word}"
-        else
-          Redcar::Application::Dialog.message_box(
-            "The selected documentation launcher is not supported. Please update Preferences > Cocoa > documentation_launcher. \
-            Supported launchers: #{DocsLookupCommand.supported_apps.join(', ')}.",
-            "Documentation Reference Failed")
-          ""
-        end
+        "osascript #{File.join(scripts_path,'stop-simulator.scpt')}"
       end
 
-      def launcher
-        @launcher ||= Cocoa.storage['documentation_launcher']
-      end
-
-      def execute
-        path = "#{launcher.downcase}_path"
-        if File.exists?(Cocoa.storage[path])
-          if command = text
-            Thread.new do
-              system("#{command}")
-            end
-          end
-        else
-          Redcar::Application::Dialog.message_box(
-            "#{launcher} app is not installed or not found at the configured location in Preferences > Cocoa > #{path}. Please install it or update your settings",
-            "Documentation Reference Failed")
-        end
+      def output
+        "none"
       end
     end
 
-    class QuitSimCommand < RunnablesCommand
+    class HomeSimulatorCommand < RunnablesCommand
       def text
-        path = File.join(File.dirname(File.expand_path(__FILE__)),'..','..','..','scripts')
-        cmd  = "osascript #{File.join(path,'stop-simulation.scpt')} &&"
-        preferred = (Project::Manager.storage['preferred_command_line'] ||= "Terminal")
-        if preferred == "iTerm"
-          cmd << "osascript #{File.join(path,'close-iterm-tab.scpt')};"
-        end
-        cmd
+        "osascript #{File.join(scripts_path,'home-simulator.scpt')}"
+      end
+
+      def output
+        "none"
+      end
+    end
+
+    class QuitSimulatorCommand < RunnablesCommand
+      def text
+        "osascript #{File.join(scripts_path,'quit-simulator.scpt')}"
       end
 
       def output
