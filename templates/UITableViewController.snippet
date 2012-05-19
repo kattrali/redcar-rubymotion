@@ -1,0 +1,43 @@
+class __NAME__ < UITableViewController
+
+  def init
+    if super
+      $1
+    end
+    self
+  end
+
+  def loadView
+    self.view = UITableView.alloc.initWithFrame(UIScreen.mainScreen.bounds,style:UITableViewStylePlain)
+  end
+
+  def viewDidLoad
+    view.dataSource = view.delegate = self
+  end
+
+  def numberOfSectionsInTableView(tableView)
+    0
+  end
+
+  def tableView(tableView,heightForRowAtIndexPath:indexPath)
+    super
+  end
+
+  def tableView(tableView,numberOfRowsInSection:section)
+    0
+  end
+
+  CELLID = "CellIdentifier"
+  def tableView(tableView,cellForRowAtIndexPath:indexPath)
+    unless cell = tableView.dequeueReusableCellWithIdentifier(CELLID)
+      cell = UITableViewCellCell.alloc.initWithStyle(UITableViewCellStyleSubtitle,reuseIdentifier:CELLID)
+      cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator
+      cell.detailTextLabel.numberOfLines = 1
+    end
+    $2
+    cell
+  end
+
+  def tableView(tableView, willDisplayCell:cell,forRowAtIndexPath:indexPath)
+  end
+end
