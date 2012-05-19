@@ -44,6 +44,8 @@
 <li>Inline syntax checking for MacRuby</li>
 <li>View RubyMotion and iOS reference documentation</li>
 <li>Send Support Tickets</li>
+<li>Generate classes from templates</li>
+<li>Save and Install custom templates</li>
 <li>View documentation for focussed or selected text</li>
 <li>Resource Manager pane for adding, removing, and viewing project resources</li>
 <li><a href="http://www.screencast.com/t/CGNWXexiRCvB">CTags-based Autocompletion of class and method names</a> -- Objective-C methods are automatically converted to Ruby!</li>
@@ -61,7 +63,11 @@
 <h3>Fresh Install</h3>
 <ol>
 <li>Close Redcar</li>
-<li>Clone this repository into <code>~/.redcar/plugins/rubymotion</code>
+<li>Run the following script to checkout the latest release
+  <pre>cd ~/.redcar/plugins
+git clone git://github.com/kattrali/redcar-rubymotion.git rubymotion
+cd rubymotion
+git fetch origin && git checkout 0.7</pre>
 </li>
 <li><code>rm ~/.redcar/cache/textmate-bundles.cache</code> (Only necessary if there is a not a MacRuby or RubyMotion TextMate bundle installed in <code>~/.redcar/Bundles</code>)</li>
 <li>Start Redcar</li>
@@ -70,7 +76,7 @@
 <h3>Upgrade</h3>
 <ol>
 <li>Close Redcar</li>
-<li>Run <code>git fetch origin && git checkout 0.6.1</code> in <code>~/.redcar/plugins/rubymotion</code>
+<li>Run <code>git fetch origin && git checkout 0.7</code> in <code>~/.redcar/plugins/rubymotion</code>
 </li>
 <li>Start Redcar</li>
 </ol>
@@ -81,6 +87,7 @@
 <p><img src="https://github.com/kattrali/redcar-rubymotion/raw/master/docs/Menubar.png"/></p>
 <p>Syntax checking is performed on file save, and generates red squiggly lines when a syntax error is found. Hovering over the error icon will show the error message.</p>
 <p><img src="https://github.com/kattrali/redcar-rubymotion/raw/master/docs/syntax-checking.png"/></p>
+<p>New File Templates can be access from the <strong>New...</strong> menu. An open file can be saved as a template by using <strong>Save as Template</strong>.
 
 <h3>Primary Commands:</h3>
 
@@ -111,16 +118,45 @@
 <p><img src="https://github.com/kattrali/redcar-rubymotion/raw/master/docs/method-autocompletion-before.png"/></p>
 <p><img src="https://github.com/kattrali/redcar-rubymotion/raw/master/docs/method-autocompletion-after.png"/></p>
 
-<h2>Configuration Notes</h2>
+<h2>Customization</h2>
+
+<h3>Documentation Launcher</h3>
 
 <ul>
-<li><p>The preferred app for searching documentation can be changed via the menu in <code>Cocoa &gt; Documentation Launcher</code></p></li>
-<li><p>To change which terminal emulator to use, set the <code>preferred_command_line</code> property in <code>project_plugin</code> preferences. I've only ever tried this with iTerm and Terminal, both seem to work fine.</p></li>
-<li><p>Automatically saving tabs before running a command can be disabled in <code>Cocoa</code> preferences by setting <code>save_project_before_running</code> to false.</p></li>
-<li><p>Reference Documentation can be opened in either the built-in Redcar browser or the external browser of choice by editing <code>use_external_browser_for_urls</code> in <code>html_view</code> preferences.</p></li>
-<li><p>By default, Redcar+RubyMotion interprets all Ruby files in RubyMotion projects using MacRuby syntax. Set <code>force_macruby_grammar</code> to <code>false</code> to disable this option.</p></li>
-<li><p>To change the path to the <code>ruby</code> executable used for syntax checking, update <code>macruby_path</code> in <code>Cocoa</code> settings.</p></li>
-<li><p>To change the path to Ingredients or Dash apps, update <code>ingredients_path</code> or <code>dash_path</code> in <code>Cocoa</code> settings.</p></li>
+<li>The preferred app for searching documentation can be changed via the menu in <code>Cocoa &gt; Documentation Launcher</code>.</li>
+<li>To change the path to Ingredients or Dash apps, change <code>ingredients_path</code> or <code>dash_app</code> in <code>Cocoa</code> preferences.</li>
+</ul>
+
+<h3>Terminal Emulator</h3>
+
+<ul>
+<li>To change which terminal emulator to use, set the <code>preferred_command_line</code> property in <code>project_plugin</code> preferences. I've only ever tried this with iTerm and Terminal, both seem to work fine.</li>
+</ul>
+
+<h3>Build Options</h3>
+
+<ul>
+<li><strong>Saving Tabs Before Command Execution:</strong> Automatically saving tabs before running a command can be changed via the menu in <code>Cocoa &gt; Build Options</code>.</li>
+<li><strong>Running Rake Commands with <code>--trace</code>:</strong> Automatically saving tabs before running a command can be changed via the menu in <code>Cocoa &gt; Build Options</code>.</li>
+</ul>
+
+<h3>Opening Links</h3>
+
+<ul>
+<li>Reference Documentation can be opened in either the built-in Redcar browser or the external browser of choice by editing <code>use_external_browser_for_urls</code> in <code>html_view</code> preferences.</li>
+</ul>
+
+<h3>Syntax Checking and Highlighting</h3>
+
+<ul>
+<li>By default, Redcar+RubyMotion interprets all Ruby files in RubyMotion projects using MacRuby syntax. Set <code>force_macruby_grammar</code> in <code>Cocoa</code> preferences to <code>false</code> to disable this option.</li>
+<li>To change the path to the <code>ruby</code> implementation used for syntax checking, change <code>macruby_path</code> in <code>Cocoa</code> preferences.</li>
+</ul>
+
+<h3>File Templates</h3>
+
+<ul>
+<li>Custom File Templates can be installed in <code>~/.redcar/RubyMotion/templates</code>. All files must end in <code>snippet</code> and can optionally use TextMate snippet syntax for filling in fields. Any instances of <code>__NAME__</code> will replaced with the selected class name upon activation.</li>
 </ul>
 
 <h2>Support</h2>
