@@ -1,7 +1,6 @@
 To Do
 -----
 
-- Add more keybindings
 - Add commands for testflight
-- Add autocompletion source for project methods
-- Add preferences option to run rake commands with trace or clean
+- Add autocompletion source for project methodss
+- Add debugger/breakpoint integration if/when a debugger existss
