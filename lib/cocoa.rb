@@ -11,19 +11,26 @@ require 'cocoa/resources/tree_mirror'
 require 'cocoa/commands/reference'
 require 'cocoa/commands/scripting'
 require 'cocoa/commands/tree_commands'
+require 'cocoa/commands/templates'
 
 module Redcar
   class Cocoa
 
     def self.menus
       Menu::Builder.build do
-        # sub_menu "File" do
-        #   sub_menu "New...", :priority => 1 do
-        #     item "RubyMotion App", CreateProjectCommand
-        #     item "UIView Controller" { }
-        #     item "UITableView Controller" { }
-        #   end
-        # end
+        sub_menu "File" do
+          lazy_sub_menu "New...", :priority => -20 do
+            # item "RubyMotion App", CreateProjectCommand
+            Cocoa.templates.each do |path|
+              item File.basename(path).sub(".snippet","") do
+                CreateFromTemplateCommand.new(path).run
+              end
+            end
+          end
+          group :priority => 1 do
+            item "Save As Template...", SaveFileAsTemplateCommand
+          end
+        end
         sub_menu "Cocoa", :priority => 10 do
           item "Run", BuildCommand
           item "Clean and Run", BuildAndCleanCommand
@@ -70,6 +77,21 @@ module Redcar
           item "File Support Ticket", SendTicketCommand
         end
       end
+    end
+
+    def self.user_template_path
+      File.join(Redcar.user_dir, %w[RubyMotion templates])
+    end
+
+    def self.template_paths
+      [
+        File.join(File.dirname(__FILE__), %w[.. templates]),
+        user_template_path
+      ]
+    end
+
+    def self.templates
+      Dir.glob(Cocoa.template_paths.map {|p| "#{p}/*.snippet"})
     end
 
     def self.before_save document

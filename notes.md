@@ -3,11 +3,11 @@ Release Notes
 
 ### 0.7
 
+- [Feature] Added template engine for quick file generation
 - [Enhancement] Maintain a single session for running commands in iTerm (with thanks to AaronH!)
 - [Feature] Added option to run rake commands with `--trace`
 - [Enhancement] Added "Build Options" to menu for easier access
 - Reorganized the `Cocoa` menu
-
 
 ### 0.6.1
 

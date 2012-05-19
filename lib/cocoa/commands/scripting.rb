@@ -76,7 +76,7 @@ module Redcar
 
     class RunnablesCommand < ProjectCommand
       def scripts_path
-        File.join(File.dirname(File.expand_path(__FILE__)),'..','..','..','scripts')
+        File.join(File.dirname(__FILE__), %[.. .. .. scripts])
       end
 
       def text
