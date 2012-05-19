@@ -1,6 +1,6 @@
 Plugin.define do
   name    "Cocoa"
-  version "0.6.1"
+  version "0.7"
   file    "lib", "cocoa"
   object  "Redcar::Cocoa"
   dependencies "HTML View", ">0",
