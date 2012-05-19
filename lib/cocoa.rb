@@ -27,6 +27,9 @@ module Redcar
               end
             end
           end
+          group :priority => 1 do
+            item "Save As Template...", SaveFileAsTemplateCommand
+          end
         end
         sub_menu "Cocoa", :priority => 10 do
           item "Run", BuildCommand
@@ -76,10 +79,14 @@ module Redcar
       end
     end
 
+    def self.user_template_path
+      File.join(Redcar.user_dir, %w[RubyMotion templates])
+    end
+
     def self.template_paths
       [
         File.join(File.dirname(__FILE__), %w[.. templates]),
-        File.join(Redcar.user_dir, %w[RubyMotion templates])
+        user_template_path
       ]
     end
 

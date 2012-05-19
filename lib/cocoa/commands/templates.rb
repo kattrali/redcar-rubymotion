@@ -2,6 +2,31 @@
 module Redcar
   class Cocoa
 
+    # Saves the current document as a new template
+    class SaveFileAsTemplateCommand < Redcar::DocumentCommand
+      def execute
+        build_template
+      end
+
+      def build_template
+        result = Redcar::Application::Dialog.input("File Generator", "New Template Name")
+        if result[:button] == :ok and name = result[:value]
+          text = doc.get_all_text
+          name.sub!(/\.snippet$/,"")
+          path = File.join(Cocoa.user_template_path,"#{name}.snippet")
+          if File.exists? path
+            Redcar::Application::Dialog.message_box("A template named #{name} already exists", "File Generator")
+            build_template
+          else
+            FileUtils.makedirs(Cocoa.user_template_path) unless File.exists?(Cocoa.user_template_path)
+            file = File.open(path, 'w') {|f| f.puts text}
+            Redcar::Application::Dialog.message_box(
+              "Template saved. It should now appear in the template menu.", "File Generator")
+          end
+        end
+      end
+    end
+
     # Generator Class for creating a new file from a template
     # path
     class CreateFromTemplateCommand < Redcar::ProjectCommand
