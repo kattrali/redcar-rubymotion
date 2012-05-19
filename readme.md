@@ -1,7 +1,7 @@
 Redcar+RubyMotion
 -----------------
 
-Basic RubyMotion workflow support in Redcar Editor
+RubyMotion workflow support in Redcar Editor
 
 ![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/redcar-rubymotion.jpg)
 
@@ -11,6 +11,8 @@ Basic RubyMotion workflow support in Redcar Editor
 - Inline syntax checking for MacRuby
 - Lookup documentation for focussed text
 - Send Support Tickets
+- Generate classes from templates
+- Save and Install custom templates
 - View RubyMotion and iOS reference documentation
 - Resource Manager pane for adding, removing, and viewing project resources
 - [CTags-based Autocompletion](http://www.screencast.com/t/CGNWXexiRCvB) of class and method names -- Objective-C methods are automatically converted to Ruby!
@@ -71,21 +73,34 @@ Syntax checking is performed on file save.
 
 ![Method Automcompletion (after)](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/method-autocompletion-after.png)
 
-## Configuration Notes
+## Customization
+
+### Documentation Launcher
 
 - The preferred app for searching documentation can be changed via the menu in `Cocoa > Documentation Launcher`.
+- To change the path to Ingredients or Dash apps, change `ingredients_path` or `dash_app` in `Cocoa` preferences.
+
+### Terminal Emulator
 
 - To change which terminal emulator to use, set the `preferred_command_line` property in `project_plugin` preferences. I've only ever tried this with iTerm and Terminal, both seem to work fine.
 
-- Automatically saving tabs before running a command can be disabled in `Cocoa` preferences by setting `save_project_before_running` to false.
+### Build Options
+
+- **Saving Tabs Before Command Execution:** Automatically saving tabs before running a command can be changed via the menu in `Cocoa > Build Options`.
+- **Running Rake Commands with `--trace`:** Automatically saving tabs before running a command can be changed via the menu in `Cocoa > Build Options`.
+
+### Opening Links
 
 - Reference Documentation can be opened in either the built-in Redcar browser or the external browser of choice by editing `use_external_browser_for_urls` in `html_view` preferences.
 
-- By default, Redcar+RubyMotion interprets all Ruby files in RubyMotion projects using MacRuby syntax. Set `force_macruby_grammar` to `false` to disable this option.
+### Syntax Checking and Highlighting
 
-- To change the path to the `ruby` executable, change `macruby_path` in `Cocoa` preferences.
+- By default, Redcar+RubyMotion interprets all Ruby files in RubyMotion projects using MacRuby syntax. Set `force_macruby_grammar` in `Cocoa` preferences to `false` to disable this option.
+- To change the path to the `ruby` implementation used for syntax checking, change `macruby_path` in `Cocoa` preferences.
 
-- To change the path to Ingredients or Dash apps, change `ingredients_path` or `dash_app` in `Cocoa` preferences.
+### File Templates
+
+- Custom File Templates can be installed in `~/.redcar/RubyMotion/templates`. All files must end in `snippet` and can optionally use TextMate snippet syntax for filling in fields. Any instances of `__NAME__` will replaced with the selected class name upon activation.
 
 ## Support
 
