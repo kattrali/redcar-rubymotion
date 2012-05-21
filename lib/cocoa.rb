@@ -76,6 +76,7 @@ module Redcar
           separator
           item "RubyMotion Developer Center", ShowRMDocs
           item "iOS API Reference", ShowIOSRefDocs
+          item "TestFlight Dashboard", ShowTestflightDashboard
           separator
           item "File Support Ticket", SendTicketCommand
         end

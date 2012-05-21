@@ -15,6 +15,13 @@ module Redcar
       end
     end
 
+    class ShowTestflightDashboard < URLCommand
+      def title;"TestFlight";end
+      def url
+        "https://testflightapp.com/dashboard/"
+      end
+    end
+
     class ShowRMDocs < URLCommand
       def title;"RubyMotion";end
       def url

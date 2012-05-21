@@ -172,7 +172,7 @@ module Redcar
           if text = result[:value]
             "rake testflight notes=\"#{text}\""
           else
-            Redcar::Application::Dialog.message_box("Release Notes are required to release a build to TestFlight")
+            Redcar::Application::Dialog.message_box("Release Notes are required to release a build to TestFlight.")
         end
       end
 
