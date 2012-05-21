@@ -167,12 +167,13 @@ module Redcar
 
     class TestFlightCommand < RunnablesCommand
       def text
-        result = Redcar::Application::Dialog.input("Build Release Notes:")
+        result = Redcar::Application::Dialog.input("TestFlight","Build Release Notes:")
         if result[:button] == :ok
           if text = result[:value]
             "rake testflight notes=\"#{text}\""
           else
             Redcar::Application::Dialog.message_box("Release Notes are required to release a build to TestFlight.")
+          end
         end
       end
 
