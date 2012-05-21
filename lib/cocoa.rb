@@ -64,8 +64,11 @@ module Redcar
             end
           end
           separator
-          item "Create Archives", ArchiveCommand
-          item "Create Release", ReleaseCommand
+          sub_menu "Release" do
+            item "Upload TestFlight Build", TestFlightCommand
+            item "Create Development Archive", ArchiveCommand
+            item "Create Release Archive", ReleaseCommand
+          end
           separator
           item "Open Resources Manager", OpenResourcesTree
           item "Show Configuration", ConfigCommand

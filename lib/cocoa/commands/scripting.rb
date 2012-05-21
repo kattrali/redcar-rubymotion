@@ -92,7 +92,9 @@ module Redcar
       end
 
       def execute
-        Redcar::Runnables.run_process(project.path,text,title,output)
+        if command = text
+          Redcar::Runnables.run_process(project.path,command,title,output)
+        end
       end
     end
 
@@ -156,6 +158,20 @@ module Redcar
     class StopSimulatorCommand < RunnablesCommand
       def text
         "osascript #{File.join(scripts_path,'stop-simulator.scpt')}"
+      end
+
+      def output
+        "none"
+      end
+    end
+
+    class TestFlightCommand < RunnablesCommand
+      def text
+        result = Redcar::Application::Dialog.input("Build Release Notes:")
+        if result[:button] == :ok
+          text = result[:value]
+          "rake testflight notes=\"#{text}\""
+        end
       end
 
       def output
