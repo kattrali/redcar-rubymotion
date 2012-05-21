@@ -1,6 +1,10 @@
 Release Notes
 =============
 
+### 0.8
+
+- [Feature] Added command for deploying a TestFlight build
+
 ### 0.7
 
 - [Feature] Added template engine for quick file generation
