@@ -77,6 +77,7 @@ module Redcar
           item "RubyMotion Developer Center", ShowRMDocs
           item "iOS API Reference", ShowIOSRefDocs
           item "TestFlight Dashboard", ShowTestflightDashboard
+          item "iOS Provisioning Portal", ShowProvisioningPortal
           separator
           item "File Support Ticket", SendTicketCommand
         end

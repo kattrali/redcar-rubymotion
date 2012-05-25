@@ -15,6 +15,13 @@ module Redcar
       end
     end
 
+    class ShowProvisioningPortal < URLCommand
+      def title;"Provisioning Portal";end
+      def url
+        "https://developer.apple.com/ios/manage/provisioningprofiles/"
+      end
+    end
+
     class ShowTestflightDashboard < URLCommand
       def title;"TestFlight";end
       def url
