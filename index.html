@@ -28,6 +28,7 @@
         <h1>Redcar+RubyMotion</h1>
         <p><a href="http://rubymotion.com">RubyMotion</a> workflow support in <a href="http://redcareditor.com">Redcar Editor</a></p>
         <p class="view"><a href="https://github.com/kattrali/redcar-rubymotion">View the Project on GitHub <small>kattrali/redcar-rubymotion</small></a></p>
+        <p>Current Version: <strong>0.8</strong></p>
         <ul>
           <li><a href="https://github.com/kattrali/redcar-rubymotion/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/kattrali/redcar-rubymotion/blob/master/notes.md#release-notes">View Release <strong>Notes</strong></a></li>
@@ -49,6 +50,7 @@
 <li>View documentation for focussed or selected text</li>
 <li>Resource Manager pane for adding, removing, and viewing project resources</li>
 <li><a href="http://www.screencast.com/t/CGNWXexiRCvB">CTags-based Autocompletion of class and method names</a> -- Objective-C methods are automatically converted to Ruby!</li>
+<li>Deploy and manage beta builds with TestFlight</li>
 </ul>
 
 <h2>Requirements</h2>
@@ -67,7 +69,7 @@
   <pre>cd ~/.redcar/plugins
 git clone git://github.com/kattrali/redcar-rubymotion.git rubymotion
 cd rubymotion
-git fetch origin && git checkout 0.7</pre>
+git fetch origin && git checkout [current version]</pre>
 </li>
 <li><code>rm ~/.redcar/cache/textmate-bundles.cache</code> (Only necessary if there is a not a MacRuby or RubyMotion TextMate bundle installed in <code>~/.redcar/Bundles</code>)</li>
 <li>Start Redcar</li>
@@ -76,7 +78,7 @@ git fetch origin && git checkout 0.7</pre>
 <h3>Upgrade</h3>
 <ol>
 <li>Close Redcar</li>
-<li>Run <code>git fetch origin && git checkout 0.7</code> in <code>~/.redcar/plugins/rubymotion</code>
+<li>Run <code>git fetch origin && git checkout [current version]</code> in <code>~/.redcar/plugins/rubymotion</code>
 </li>
 <li>Start Redcar</li>
 </ol>
