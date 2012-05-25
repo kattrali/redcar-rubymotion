@@ -3,6 +3,7 @@ module Redcar
   class Cocoa
     class TreeMirror
       include Redcar::Tree::Mirror
+      attr_reader :resources
 
       def self.tree_title
         "Resources"
@@ -51,6 +52,7 @@ module Redcar
               parent_node.children = parent_node.children.sort_by {|n| n.text.downcase }
             else
               parent_node = parent.new([node])
+              @resources << parent_node
             end
           else
             @resources << node

@@ -53,6 +53,7 @@ module Redcar
                   controller.fs.delete(n.path)
                   tree.tree_mirror.remove_node(n)
                 end
+                tree.tree_mirror.refresh
                 tree.refresh
               end
             }
@@ -68,7 +69,7 @@ module Redcar
               rescue Exception => e
                 p e.message
                 p e.backtrace
-                Redcar::Application::Dialog.message_box("The selected file could not be copied", "uh oh")
+                Redcar::Application::Dialog.message_box("The selected file could not be copied: #{e.message}", "uh oh")
               end
             end
           }
