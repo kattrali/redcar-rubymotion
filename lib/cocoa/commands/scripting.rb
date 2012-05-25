@@ -141,10 +141,10 @@ module Redcar
       def text
         result = Redcar::Application::Dialog.input("TestFlight","Build Release Notes:")
         if result[:button] == :ok
-          if text = result[:value]
+          if text = result[:value] and not text.empty?
             "rake testflight notes=\\\"#{text.gsub('"','\\\\\"')}\\\""
           else
-            Redcar::Application::Dialog.message_box("Release Notes are required to release a build to TestFlight.")
+            Redcar::Application::Dialog.message_box("Release Notes are required to deploy a build to TestFlight.")
             nil
           end
         end
