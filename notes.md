@@ -7,6 +7,7 @@ Release Notes
 - [Feature] Added links to TestFlight Dashboard and Provisioning Portal
 - [Enhancement] Allow using template name as default file/class name
 - [Fixed] Resolved typos in bundled file templates
+- [Fixed] New resource directories are now added when adding new files
 
 ### 0.7
 
