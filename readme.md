@@ -7,15 +7,16 @@ RubyMotion workflow support in Redcar Editor
 
 ## Features
 
-- Build and Run project from Cocoa Menu
+- Build, Test, and Run app from Cocoa Menu
 - Inline syntax checking for MacRuby
-- Lookup documentation for focussed text
+- Look up documentation for focussed text
 - Send Support Tickets
 - Generate classes from templates
 - Save and Install custom templates
 - View RubyMotion and iOS reference documentation
 - Resource Manager pane for adding, removing, and viewing project resources
 - [CTags-based Autocompletion](http://www.screencast.com/t/CGNWXexiRCvB) of class and method names -- Objective-C methods are automatically converted to Ruby!
+- Release builds to beta testers using TestFlight
 
 ## Requirements
 
@@ -36,7 +37,7 @@ RubyMotion workflow support in Redcar Editor
 ### Upgrade
 
 1. Close Redcar
-2. Run `git fetch origin && git checkout 0.6.1` from `~/.redcar/plugins/rubymotion`
+2. Run `git fetch origin && git checkout 0.8` from `~/.redcar/plugins/rubymotion`
 3. Start Redcar
 
 ## Usage

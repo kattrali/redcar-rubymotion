@@ -1,6 +1,13 @@
 Release Notes
 =============
 
+### 0.8
+
+- [Feature] Added command for deploying a TestFlight build
+- [Feature] Added links to TestFlight Dashboard and Provisioning Portal
+- [Enhancement] Allow using template name as default file/class name
+- [Fixed] Resolved typos in bundled file templates
+
 ### 0.7
 
 - [Feature] Added template engine for quick file generation

@@ -24,14 +24,15 @@ module Redcar
             end
           end
         end
-        command = commandline
-        Thread.new do
-          system("#{command}")
+        if command = commandline
+          Thread.new do
+            system("#{command}")
+          end
         end
       end
 
       def terminal_script(preferred, new_session=false)
-        rakecmd = text
+        return unless rakecmd = text
         rakecmd << " --trace" if trace? and not suppress_trace?
         if preferred.start_with? "iTerm"
           <<-OSASCRIPT
@@ -63,14 +64,16 @@ module Redcar
 
       def commandline
         preferred = (Project::Manager.storage['preferred_command_line'] ||= "Terminal")
-        <<-BASH.gsub(/^\s*/, '')
-          osascript <<END
-            tell application "#{preferred}"
-              #{terminal_script(preferred)}
-              activate
-            end tell
-          END
-        BASH
+        if script = terminal_script(preferred)
+          <<-BASH.gsub(/^\s*/, '')
+            osascript <<END
+              tell application "#{preferred}"
+                #{script}
+                activate
+              end tell
+            END
+          BASH
+        end
       end
     end
 
@@ -92,7 +95,9 @@ module Redcar
       end
 
       def execute
-        Redcar::Runnables.run_process(project.path,text,title,output)
+        if command = text
+          Redcar::Runnables.run_process(project.path,command,title,output)
+        end
       end
     end
 
@@ -129,6 +134,20 @@ module Redcar
     class ReleaseCommand < AppleScriptCommand
       def text
         "rake archive:release"
+      end
+    end
+
+    class TestFlightCommand < AppleScriptCommand
+      def text
+        result = Redcar::Application::Dialog.input("TestFlight","Build Release Notes:")
+        if result[:button] == :ok
+          if text = result[:value] and not text.empty?
+            "rake testflight notes=\\\"#{text.gsub('"','\\\\\"')}\\\""
+          else
+            Redcar::Application::Dialog.message_box("Release Notes are required to deploy a build to TestFlight.")
+            nil
+          end
+        end
       end
     end
 

@@ -30,7 +30,7 @@ class __NAME__ < UITableViewController
   CELLID = "CellIdentifier"
   def tableView(tableView,cellForRowAtIndexPath:indexPath)
     unless cell = tableView.dequeueReusableCellWithIdentifier(CELLID)
-      cell = UITableViewCellCell.alloc.initWithStyle(UITableViewCellStyleSubtitle,reuseIdentifier:CELLID)
+      cell = UITableViewCell.alloc.initWithStyle(UITableViewCellStyleSubtitle,reuseIdentifier:CELLID)
       cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator
       cell.detailTextLabel.numberOfLines = 1
     end
@@ -39,5 +39,8 @@ class __NAME__ < UITableViewController
   end
 
   def tableView(tableView, willDisplayCell:cell,forRowAtIndexPath:indexPath)
+  end
+
+  def tableView(tableView,didSelectRowAtIndexPath:indexPath)
   end
 end
