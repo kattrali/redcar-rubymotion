@@ -35,13 +35,15 @@ module Redcar
       end
 
       def template
-        File.basename(@path).sub(".snippet","")
+        @template ||= File.basename(@path).sub(".snippet","")
       end
 
       def execute
         if File.exists? @path
-          result = Redcar::Application::Dialog.input("File Generator","#{template} Name:")
-          if result[:button] == :ok and classname = result[:value].strip
+          result = Redcar::Application::Dialog.input("File Generator","#{template} Name (blank for default):")
+          if result[:button] == :ok
+            classname = result[:value].strip
+            classname = template if classname.empty?
             text = replace_symbols(IO.read(@path), {:name => classname})
             filename  = to_snake_case(classname) + ".rb"
             if directory = Redcar::Application::Dialog.open_directory(project.path)
