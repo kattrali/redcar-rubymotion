@@ -2,7 +2,7 @@ require 'rubygems'
 
 Gem::Specification.new do |s|
   s.name             = "redcar-rubymotion"
-  s.version          = "0.7"
+  s.version          = "0.8"
   s.author           = "Delisa Mason"
   s.email            = "iskanamagus@gmail.com"
   s.homepage         = "https://kattrali.github.com/redcar-rubymotion"
