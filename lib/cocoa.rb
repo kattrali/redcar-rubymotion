@@ -8,6 +8,7 @@ require 'cocoa/autocompletion/list_dialog'
 require 'cocoa/resources/tree_controller'
 require 'cocoa/resources/tree_nodes'
 require 'cocoa/resources/tree_mirror'
+require 'cocoa/commands/command'
 require 'cocoa/commands/reference'
 require 'cocoa/commands/scripting'
 require 'cocoa/commands/tree_commands'
@@ -15,6 +16,16 @@ require 'cocoa/commands/templates'
 
 module Redcar
   class Cocoa
+
+    def self.sensitivities
+      [
+        Sensitivity.new(:open_rubymotion_project, Redcar.app, false, [:focussed_window]) do
+          if win = Redcar.app.focussed_window and project = Project::Manager.in_window(win)
+            Cocoa.is_rubymotion? project
+          end
+        end
+      ]
+    end
 
     def self.menus
       Menu::Builder.build do
@@ -101,20 +112,27 @@ module Redcar
 
     def self.before_save document
       if document.path && win = Redcar.app.focussed_window and project = Project::Manager.in_window(win)
-        confirmation = File.join(project.path,'.redcar','macruby.project')
-        if File.exists? confirmation
+        if is_rubymotion? project
           check_grammar(document)
-        else
-          rakefile = File.join(project.path,'Rakefile')
-          if File.exists? rakefile
-            text = File.new(rakefile).read
-            if text.include?'motion/project'
-              FileUtils.touch(confirmation)
-              check_grammar(document)
-            end
+        end
+      end
+    end
+
+    def self.is_rubymotion? project
+      confirmation = File.join(project.path,'.redcar','macruby.project')
+      if File.exists? confirmation
+        return true
+      else
+        rakefile = File.join(project.path,'Rakefile')
+        if File.exists? rakefile
+          text = File.new(rakefile).read
+          if text.include?'motion/project'
+            FileUtils.touch(confirmation)
+            return true
           end
         end
       end
+      return false
     end
 
     def self.tab_handlers
