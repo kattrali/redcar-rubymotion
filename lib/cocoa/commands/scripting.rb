@@ -1,6 +1,6 @@
 module Redcar
   class Cocoa
-    class AppleScriptCommand < ProjectCommand
+    class AppleScriptCommand < RubyMotionProjectCommand
       def text
         "echo 'Hello World'"
       end
@@ -77,7 +77,7 @@ module Redcar
       end
     end
 
-    class RunnablesCommand < ProjectCommand
+    class RunnablesCommand < RubyMotionProjectCommand
       def scripts_path
         File.join(File.dirname(__FILE__), %[.. .. .. scripts])
       end
