@@ -9,6 +9,7 @@ require 'cocoa/resources/tree_controller'
 require 'cocoa/resources/tree_nodes'
 require 'cocoa/resources/tree_mirror'
 require 'cocoa/commands/command'
+require 'cocoa/commands/debugger'
 require 'cocoa/commands/reference'
 require 'cocoa/commands/scripting'
 require 'cocoa/commands/tree_commands'
@@ -44,6 +45,7 @@ module Redcar
         end
         sub_menu "Cocoa", :priority => 10 do
           item "Run", BuildCommand
+          item "Debug", StartDebugger
           item "Clean and Run", BuildAndCleanCommand
           item "Run on Device", BuildOnDeviceCommand
           item "Test", TestCommand
