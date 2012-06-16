@@ -1,9 +1,9 @@
 module Redcar
   class Cocoa
     class URLCommand < ProjectCommand
-      def title;"Google";end
+      def title;"DuckDuckGo";end
       def url
-        "www.google.com"
+        "www.DuckDuckGo.com"
       end
       def execute
         if text = url and not text.empty?

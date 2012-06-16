@@ -172,6 +172,8 @@ module Redcar
         storage.set_default('save_project_before_running',true)
         storage.set_default('documentation_launcher','Ingredients')
         storage.set_default('run_with_trace',false)
+        storage.set_default('color_type','standard')
+        storage.set_default('custom_color_type','UIColor.rgb(RED,GREEN,BLUE)')
         storage
       end
     end
