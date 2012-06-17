@@ -11,16 +11,17 @@ module Redcar
       # creates and returns the snippet, if not returns false.
       def self.find_snippet(edit_view)
         document = edit_view.document
-        if ['Ruby','RubyMotion','MacRuby'].include? document.grammar
+        if ['Ruby','RubyMotion','MacRuby'].include? edit_view.grammar
+          snippet = false
           if document.current_word == 'color'
-            Cocoa::OpenColorPicker.new.run
+            snippet = Cocoa::OpenColorPicker.new.get_snippet
           else
             word = objc_method_before_cursor(edit_view)
             if word
               snippet = Autocompletion.method_to_snippet(word, word)
-              activate_snippet(edit_view, snippet)
             end
           end
+          activate_snippet(edit_view, snippet) if snippet
         end
       end
 

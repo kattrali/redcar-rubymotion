@@ -13,6 +13,7 @@ require 'cocoa/commands/reference'
 require 'cocoa/commands/scripting'
 require 'cocoa/commands/tree_commands'
 require 'cocoa/commands/templates'
+require 'cocoa/commands/color_picker'
 
 module Redcar
   class Cocoa

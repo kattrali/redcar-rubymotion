@@ -12,21 +12,32 @@ module Redcar
       RGB_TYPE = "UIColor.rgb(RED,GREEN,BLUE)"
       HEX_TYPE = 'UIColor.hex("HEX")'
 
-      def execute
+      def get_snippet
         parent = Redcar.app.focussed_window.controller.shell
         dialog = ColorDialog.new(parent)
         dialog.text = "Color Dialog"
-        dialog.setRGB(Swt::SWT::RGB.new(255,255,255))
+        dialog.setRGB(Java::OrgEclipseSwtGraphics::RGB.new(red,green,blue))
         if color = dialog.open and snip = to_snippet(color)
-          text = Redcar::Snippets::Snippet.new(snip)
-          controller = doc.controllers(Snippets::DocumentController).first
-          controller.start_snippet!(text)
+          Redcar::Snippets::Snippet.new(nil,snip, :tab => 'color')
         end
+      end
+
+      def red
+        @@red ||= 255
+      end
+
+      def green
+        @@green ||= 255
+      end
+
+      def blue
+        @@green ||= 255
       end
 
       # convert Swt::SWT:RGB object to decimal rgb
       def to_decimal color
-        [color.red,color.green,color.blue].map {|c| c.to_f/255 }
+        @@red, @@green, @@blue = color.red,color.green,color.blue
+        [color.red,color.green,color.blue].map {|c| Integer((c.to_f/255)*100)/ Float(100) }
       end
 
       # convert Swt::SWT:RGB object to hex
@@ -36,7 +47,7 @@ module Redcar
 
       #generate a Redcar::Snippets::Snippet from Swt::SWT::RGB
       def to_snippet color
-        red, green, blue = to_decimal(color)
+        r, g, b = to_decimal(color).map {|d|d.to_s}
         hex  = to_hex(color)
         base = case Cocoa.storage['color_type']
         when 'standard' then STANDARD
@@ -48,7 +59,7 @@ module Redcar
         end
         if base
           # lol
-          base.gsub('RED',red).gsub('GREEN',green).gsub('BLUE',blue).gsub('HEX',hex)
+          base.gsub('RED',r).gsub('GREEN',g).gsub('BLUE',b).gsub('HEX',hex)
         end
       end
     end
