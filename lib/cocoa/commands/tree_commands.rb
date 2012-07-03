@@ -1,6 +1,6 @@
 module Redcar
   class Cocoa
-    class OpenResourcesTree < Redcar::ProjectCommand
+    class OpenResourcesTree < RubyMotionProjectCommand
       def execute
         if tree = win.treebook.trees.detect {|tree| tree.tree_mirror.title == TreeMirror.tree_title }
           tree.refresh
