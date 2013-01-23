@@ -1,6 +1,11 @@
 Release Notes
 =============
 
+### 0.9
+
+- [Feature] Option to use inline documentation using RubyMotion RI -- work in progress, currently best supports class names
+
+
 ### 0.8
 
 - [Feature] Added command for deploying a TestFlight build

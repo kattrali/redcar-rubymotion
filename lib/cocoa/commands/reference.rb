@@ -46,11 +46,11 @@ module Redcar
     class DocsLookupCommand < DocumentCommand
 
       def self.supported_apps
-        ["Dash","Ingredients"]
+        ["Dash","Ingredients","Inline"]
       end
 
       def text
-        word = doc.current_word
+        word = doc.selection? ? doc.selected_text : doc.current_word || ""
         case launcher
         when "Ingredients"
           <<-BASH.gsub(/^\s*/, '')
@@ -63,6 +63,19 @@ module Redcar
           BASH
         when "Dash"
           "open dash://#{word}"
+        when "Inline"
+          line_offset     = doc.offset_at_line(doc.cursor_line)
+          cursor_offset   = doc.cursor_offset
+          relative_offset = cursor_offset - line_offset
+          next_line = doc.line_at_offset(doc.offset_at_line(doc.cursor_line + 1) + relative_offset)
+          if next_line == doc.cursor_line + 1
+            line_offset = doc.offset_at_line(next_line)
+            cursor_offset = line_offset + relative_offset
+            position = [line_offset, cursor_offset - 20].max
+          else
+            position = :below_cursor
+          end
+          Application::Dialog.popup_text(word, `motion ri #{word}`, position, [560, 20])
         else
           Redcar::Application::Dialog.message_box(
             "The selected documentation launcher is not supported. Please update Preferences > Cocoa > documentation_launcher. \
@@ -78,7 +91,7 @@ module Redcar
 
       def execute
         path = "#{launcher.downcase}_path"
-        if File.exists?(Cocoa.storage[path])
+        if launcher == "Inline" or File.exists?(Cocoa.storage[path])
           if command = text
             Thread.new do
               system("#{command}")
