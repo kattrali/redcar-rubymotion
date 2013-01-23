@@ -101,6 +101,17 @@ module Redcar
       end
     end
 
+    class DebugCommand < RubyMotionProjectCommand
+      def execute
+        options = {
+          :model => ::GDI::Debugger::RubyMotion,
+          :directory => project.path,
+          :title => "RubyMotion Debugger"
+        }
+        ::GDI::ProcessController.new(options).run
+      end
+    end
+
     class BuildCommand < AppleScriptCommand
       def text
         "rake"

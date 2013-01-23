@@ -1,6 +1,9 @@
 
 require 'swt/content_control_adapter'
 require 'swt/content_proposal_provider'
+
+require File.expand_path '../vendor/gdi/lib/gdi', File.dirname(__FILE__)
+require 'cocoa/annotation_listener'
 require 'cocoa/tabs'
 require 'cocoa/syntax_checker'
 require 'cocoa/autocompletion'
@@ -49,6 +52,7 @@ module Redcar
           item "Run", BuildCommand
           item "Clean and Run", BuildAndCleanCommand
           item "Run on Device", BuildOnDeviceCommand
+          item "Debug", DebugCommand
           item "Test", TestCommand
           sub_menu "Simulator" do
             item "Stop", StopSimulatorCommand
@@ -125,6 +129,9 @@ module Redcar
       win = tab.notebook.window
       if tab.is_a?(EditTab) and project = Project::Manager.in_window(win)
         if is_rubymotion? project
+          listener = AnnotationListener.new(tab.document)
+          tab.edit_view.controller.mate_text.addAnnotationListener(listener)
+
           control  = tab.edit_view.controller.mate_text.text_widget
           adapter  = ContentControlAdapter.new(tab.document)
           proposer = ContentProposalAdapter.new(control, adapter, ContentProposalProvider.new(tab.document, project), nil, nil)
@@ -163,6 +170,7 @@ module Redcar
         link "Cmd+R",           BuildCommand
         link "Cmd+Shift+R",     BuildOnDeviceCommand
         link "Cmd+Ctrl+T",      TestCommand
+        link "Cmd+Shift+D",     DebugCommand
         link "Ctrl+Shift+Q",    QuitSimulatorCommand
         link "Ctrl+Shift+S",    StopSimulatorCommand
         link "Ctrl+Shift+H",    HomeSimulatorCommand
