@@ -1,4 +1,5 @@
 require 'gdi/debugger/files/default_linker'
+require 'gdi/debugger/files/rubymotion_linker'
 
 class GDI
   class Debugger
