@@ -1,0 +1,20 @@
+%style{:type => "text/css"}
+  :sass
+    body
+      background-color: #{Redcar::ApplicationSWT.storage['selected_tab_background'][100]}
+    .window
+      font-family: "#{Redcar::EditView.font}"
+
+%script{:src => "file://#{Redcar::HtmlView.jquery_path}", :type => "text/javascript"}
+%script{:src => "file://#{VIEW_ROOT}/index.js", :type => "text/javascript"}
+%link{:href => "file://#{Redcar::HtmlView.default_css_path}", :media => "screen", :rel => "stylesheet", :type => "text/css"}
+%link{:href => "file://#{VIEW_ROOT}/index.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}
+
+%span.controls
+  - for action in @actions
+    %button.action{:title => "#{action[:title]}",:disabled => "disabled", :onclick => "Controller.command('#{action[:command]}')"}
+      %img{:src => "#{File.join(RedcarIcons.directory,action[:icon]+'.png')}"}
+  %label#status.rerun
+
+- for element in @html_elements
+  = render(element)

@@ -1,0 +1,54 @@
+body
+  overflow-y: hidden
+  font-size: 12
+  form
+    display: inline
+    font-size: 12
+    input#input
+      width: 80%
+      border: none
+      border-left: 1px solid #555
+      display: inline
+      background-color: #121212
+      color: white
+      &:focus
+        border: none
+        outline: none
+  .file_link
+    color: #22F
+  .composite
+    &.vertical
+      padding-bottom: 4px
+      height: 32%
+      left: 0px
+      display: block
+    &.horizontal
+      height: 80%
+      width: 32%
+      margin-right: 8px
+      float: left
+      display: inline
+    .tab
+      height: 10%
+      padding-left: 4px
+      padding-right: 4px
+      padding-top: 4px
+      background-color: #ddd
+      border-top-left-radius: 5px
+      border-top-right-radius: 5px
+      -moz-border-radius-topleft: 5px
+      -moz-border-radius-topright: 5px
+      border: 1px solid #ddd
+      border-bottom: 0px
+      &.disabled
+        background: transparent
+    .window
+      height: 90%
+      width: 100%
+      background-color: #ddd
+      border: 2px solid #ddd
+      padding: 1px
+      overflow-y: scroll
+      .stderr
+        color: red
+

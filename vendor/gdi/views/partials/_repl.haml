@@ -1,0 +1,8 @@
+- GDI::OutputController::ReplController.new(self, @process_controller)
+
+.composite{:onclick => "$(this).find('input').focus();"}
+  %span.tab REPL
+  #repl-window.window
+    %span#repl
+    %form
+      %input#input{:type => "text"}
