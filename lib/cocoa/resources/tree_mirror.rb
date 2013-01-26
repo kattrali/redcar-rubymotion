@@ -9,6 +9,10 @@ module Redcar
         "Resources"
       end
 
+      def self.excluded_extensions
+        ['mom','momd','lproj','storyboardc','nib']
+      end
+
       def initialize(project)
         @project = project
       end
@@ -21,7 +25,10 @@ module Redcar
 
       # all files in the resource directory and subdirectories
       def files
-        Dir[File.join(resource_files_path,'**/*.*')]
+        Dir[File.join(resource_files_path,'**/*.*')].select do |f|
+          ext = f.split(".").last
+          !TreeMirror.excluded_extensions.include?(ext)
+        end
       end
 
       def title

@@ -61,11 +61,11 @@ module Redcar
       include Redcar::Tree::Mirror::NodeMirror
 
       def self.extensions
-        ['strings']
+        ['strings','plist']
       end
 
       def text
-        "Strings"
+        "Properties"
       end
 
       def icon
@@ -106,7 +106,7 @@ module Redcar
     class ImagesDirNode < DirNode
       include Redcar::Tree::Mirror::NodeMirror
       def self.extensions
-        ['gif','png','jpg','jpeg','psd']
+        ['gif','png','jpg','jpeg','psd','ai']
       end
 
       def text
@@ -121,7 +121,7 @@ module Redcar
     class InterfaceDirNode < DirNode
       include Redcar::Tree::Mirror::NodeMirror
       def self.extensions
-        ['xib']
+        ['xib','storyboard']
       end
 
       def text
@@ -136,7 +136,7 @@ module Redcar
     class DatabaseDirNode < DirNode
       include Redcar::Tree::Mirror::NodeMirror
       def self.extensions
-        ['db','sqlite']
+        ['db','sqlite','xcdatamodeld','xcdatamodel']
       end
 
       def text
