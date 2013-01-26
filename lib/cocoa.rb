@@ -1,4 +1,6 @@
 
+require 'swt/content_control_adapter'
+require 'swt/content_proposal_provider'
 require 'cocoa/tabs'
 require 'cocoa/syntax_checker'
 require 'cocoa/autocompletion'
@@ -13,6 +15,9 @@ require 'cocoa/commands/reference'
 require 'cocoa/commands/scripting'
 require 'cocoa/commands/tree_commands'
 require 'cocoa/commands/templates'
+
+java_import 'org.eclipse.jface.fieldassist.AutoCompleteField'
+java_import 'org.eclipse.jface.fieldassist.ContentProposalAdapter'
 
 module Redcar
   class Cocoa
@@ -118,6 +123,18 @@ module Redcar
       end
     end
 
+    def self.tab_added tab
+      win = tab.notebook.window
+      if tab.is_a?(EditTab) and project = Project::Manager.in_window(win)
+        if is_rubymotion? project
+          control  = tab.edit_view.controller.mate_text.text_widget
+          adapter  = ContentControlAdapter.new(tab.document)
+          proposer = ContentProposalAdapter.new(control, adapter, ContentProposalProvider.new(tab.document, project), nil, nil)
+          proposer.popupSize = Swt::Graphics::Point.new(400, 200)
+        end
+      end
+    end
+
     def self.is_rubymotion? project
       confirmation = File.join(project.path,'.redcar','macruby.project')
       if File.exists? confirmation
@@ -135,15 +152,8 @@ module Redcar
       return false
     end
 
-    def self.tab_handlers
-      [Cocoa::TabHandler]
-    end
-    def self.autocompletion_source_types
-      [Cocoa::CompletionSource]
-    end
-
     def self.check_grammar document
-      if document.edit_view.grammar.start_with? "Ruby"
+      if document.edit_view.grammar.start_with?("Ruby")
         document.edit_view.grammar = "MacRuby" if storage['force_macruby_grammar']
       end
     end

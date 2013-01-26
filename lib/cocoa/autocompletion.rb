@@ -5,6 +5,7 @@ module Redcar
       # Are Cocoa-type completions valid in a given
       # document?
       def self.supported? document
+        Cocoa.check_grammar(document)
         supported_grammars.include? document.edit_view.grammar
       end
 
