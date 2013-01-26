@@ -66,13 +66,11 @@ Syntax checking is performed on file save.
 ![Documentation Lookup](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/documentation-lookup.png)
 - **File Support Ticket:** File a ticket with RubyMotion support
 - **Reference Links:** Open developer documentation in Web Views
-- **Menu Autocompletion:** Press `Shift+Ctrl+Space` or select Menu Auto Complete from the Edit menu
+- **Menu Autocompletion:** Typed text is automatically completed from available class, constant, struct, and method names. Press `Return` while a menu item is highlighted to insert it.
 
-![Class Automcompletion](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/class-autocompletion.png)
+![Method Automcompletion (before)](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/autocomplete-1.jpeg)
 
-![Method Automcompletion (before)](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/method-autocompletion-before.png)
-
-![Method Automcompletion (after)](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/method-autocompletion-after.png)
+![Method Automcompletion (after)](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/autocomplete-2.jpeg)
 
 ## Customization
 
