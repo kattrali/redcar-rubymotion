@@ -23,7 +23,7 @@ RubyMotion workflow support in Redcar Editor
 - AppleScript, for terminal emulator interaction
 - Redcar 0.12+
 - RubyMotion 1.0+
-- [Ingredients](http://fileability.net/ingredients/) or [Dash](http://kapeli.com/dash/), for documentation lookup
+- (Optional) [ClamShell](http://kattrali.github.com/clamshell/), [Ingredients](http://fileability.net/ingredients/) or [Dash](http://kapeli.com/dash/), for documentation lookup
 
 ## Installation
 
@@ -37,7 +37,7 @@ RubyMotion workflow support in Redcar Editor
 ### Upgrade
 
 1. Close Redcar
-2. Run `git fetch origin && git checkout 0.8` from `~/.redcar/plugins/rubymotion`
+2. Run `git fetch origin && git checkout 0.9` from `~/.redcar/plugins/rubymotion`
 3. Start Redcar
 
 ## Usage
@@ -52,21 +52,21 @@ Syntax checking is performed on file save.
 
 ### Primary Commands
 
-- **Run (⌘R):** Run default `rake` command; build app and launch simulator from a terminal window
+- **Run (Cmd+R):** Run default `rake` command; build app and launch simulator from a terminal window
 
-- **Run on Device (Shift+⌘R):** Build app and launch in attached and configured iOS device
+- **Run on Device (Shift+Cmd+R):** Build app and launch in attached and configured iOS device
 
-- **Test (^⌘T):** Run test suite
-- **Quit iOS Simulator (Shift+^Q):** Close simulator
+- **Test (Ctrl+Cmd+T):** Run test suite
+- **Quit iOS Simulator (Shift+Ctrl+Q):** Close simulator
 - **Create Archives:** Create release (App Store) and development .ipa files
 - **Open Resource Manager:** Show project resources in a tree pane, organized by type
 ![Screenshot](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/resources.png)
 - **Show Configuration:** Display `rake config` in a Web View
-- **Show Documentation (Shift+⌘Space):** Open documentation for selected or focussed text in [Ingredients](http://fileability.net/ingredients/) or [Dash](http://kapeli.com/dash/).
+- **Show Documentation (Shift+Cmd+Space):** Open documentation for selected or focussed text in [ClamShell](http://kattrali.github.com/clamshell/), [Ingredients](http://fileability.net/ingredients/), or [Dash](http://kapeli.com/dash/).
 ![Documentation Lookup](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/documentation-lookup.png)
 - **File Support Ticket:** File a ticket with RubyMotion support
 - **Reference Links:** Open developer documentation in Web Views
-- **Menu Autocompletion:** Press `Shift+^Space` or select Menu Auto Complete from the Edit menu
+- **Menu Autocompletion:** Press `Shift+Ctrl+Space` or select Menu Auto Complete from the Edit menu
 
 ![Class Automcompletion](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/class-autocompletion.png)
 
@@ -79,11 +79,13 @@ Syntax checking is performed on file save.
 ### Documentation Launcher
 
 - The preferred app for searching documentation can be changed via the menu in `Cocoa > Documentation Launcher`.
-- To change the path to Ingredients or Dash apps, change `ingredients_path` or `dash_app` in `Cocoa` preferences.
+- To change the path to Ingredients, Dash, or ClamShell apps, change `{app}_path` in `Cocoa` preferences.
+
+![Inline Documentation](https://github.com/kattrali/redcar-rubymotion/raw/master/docs/clamshell-inline-docs.png)
 
 ### Terminal Emulator
 
-- To change which terminal emulator to use, set the `preferred_command_line` property in `project_plugin` preferences. I've only ever tried this with iTerm and Terminal, both seem to work fine.
+- To change which terminal emulator to use, set the `preferred_command_line` property in `project_plugin` preferences. I've only ever tried this with iTerm2 and Terminal, both seem to work fine.
 
 ### Build Options
 

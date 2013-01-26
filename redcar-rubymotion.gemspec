@@ -2,7 +2,7 @@ require 'rubygems'
 
 Gem::Specification.new do |s|
   s.name             = "redcar-rubymotion"
-  s.version          = "0.8"
+  s.version          = "0.9"
   s.author           = "Delisa Mason"
   s.email            = "iskanamagus@gmail.com"
   s.homepage         = "https://kattrali.github.com/redcar-rubymotion"
@@ -14,5 +14,4 @@ Gem::Specification.new do |s|
   s.require_path     = "lib"
   s.has_rdoc         = true
   s.extra_rdoc_files = %w[readme.md notes.md LICENSE]
-  # s.add_dependency("dependency", ">= 0.x.x")
 end

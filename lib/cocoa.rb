@@ -169,6 +169,7 @@ module Redcar
         storage.set_default('force_macruby_grammar',true)
         storage.set_default('dash_path','/Applications/Dash.app')
         storage.set_default('ingredients_path','/Applications/Ingredients.app')
+        storage.set_default('clamshell_path','/Applications/ClamShell.app')
         storage.set_default('save_project_before_running',true)
         storage.set_default('documentation_launcher','Ingredients')
         storage.set_default('run_with_trace',false)

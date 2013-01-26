@@ -3,6 +3,7 @@ Release Notes
 
 ### 0.9
 
+- [Feature] Option to use inline documentation using [ClamShell](http://kattrali.github.com/clamshell/) and the [RubyMotion DocSet](http://rubymotion.com/files/RubyMotion.docset.zip)
 - [Feature] Option to use inline documentation using RubyMotion RI -- work in progress, currently best supports class names
 
 

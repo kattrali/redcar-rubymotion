@@ -46,7 +46,7 @@ module Redcar
     class DocsLookupCommand < DocumentCommand
 
       def self.supported_apps
-        ["Dash","Ingredients","Inline"]
+        ["ClamShell","Dash","Ingredients","Motion RI"]
       end
 
       def text
@@ -63,7 +63,12 @@ module Redcar
           BASH
         when "Dash"
           "open dash://#{word}"
-        when "Inline"
+        when "ClamShell"
+          x, y = Swt::GraphicsUtils.below_pixel_location_at_offset(doc.edit_view.cursor_offset)
+          height = ApplicationSWT.display.primaryMonitor.bounds.height
+          width  = ApplicationSWT.display.primaryMonitor.bounds.width
+          "open 'clamshell://searchText=#{word}&x=#{x}&y=#{height - y}'"
+        when "Motion RI"
           line_offset     = doc.offset_at_line(doc.cursor_line)
           cursor_offset   = doc.cursor_offset
           relative_offset = cursor_offset - line_offset
@@ -91,7 +96,7 @@ module Redcar
 
       def execute
         path = "#{launcher.downcase}_path"
-        if launcher == "Inline" or File.exists?(Cocoa.storage[path])
+        if launcher == "Motion RI" or File.exists?(Cocoa.storage[path])
           if command = text
             Thread.new do
               system("#{command}")
