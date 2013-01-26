@@ -16,7 +16,8 @@ body {
         border: none;
         outline: none; }
   body .file_link {
-    color: #2222ff; }
+    color: #2222ff;
+    text-decoration: underline; }
   body .composite.vertical {
     padding-bottom: 4px;
     height: 48%;
