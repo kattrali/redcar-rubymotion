@@ -102,6 +102,14 @@ module Redcar
       end
     end
 
+    def self.edit_view_context_menus
+      Redcar::Menu::Builder.build do
+        group(:priority => 50) do
+          item("Evalute") { GDI::Actions.evaluate }
+        end
+      end
+    end
+
     def self.user_template_path
       File.join(Redcar.user_dir, %w[RubyMotion templates])
     end
