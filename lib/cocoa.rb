@@ -5,8 +5,6 @@ require 'cocoa/tabs'
 require 'cocoa/syntax_checker'
 require 'cocoa/autocompletion'
 require 'cocoa/autocompletion/completion_source'
-require 'cocoa/autocompletion/tab_handler'
-require 'cocoa/autocompletion/list_dialog'
 require 'cocoa/resources/tree_controller'
 require 'cocoa/resources/tree_nodes'
 require 'cocoa/resources/tree_mirror'
@@ -131,13 +129,9 @@ module Redcar
           adapter  = ContentControlAdapter.new(tab.document)
           proposer = ContentProposalAdapter.new(control, adapter, ContentProposalProvider.new(tab.document, project), nil, nil)
           proposer.popupSize = Swt::Graphics::Point.new(400, 200)
-          tab.proposal_adapter = proposer
+          proposer.propagateKeys = false
         end
       end
-    end
-
-    def self.tab_closed tab
-      tab.proposal_provider = nil if tab.is_a?(EditTab)
     end
 
     def self.is_rubymotion? project

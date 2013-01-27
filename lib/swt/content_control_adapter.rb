@@ -4,6 +4,7 @@ module Redcar
     # org.eclipse.jface.fieldassist
     # Interface IControlContentAdapter
     class ContentControlAdapter
+      attr_reader :doc
 
       def initialize document
         @doc = document
@@ -26,7 +27,7 @@ module Redcar
       # appropriate to return the bounds of the entire control. This value may be
       # used to position a content proposal popup.
       def getInsertionBounds control
-        prefix = @doc.current_word
+        prefix = doc.current_word
         offset = control.caretOffset - prefix.length
         point  = control.getLocationAtOffset(offset)
         height = control.lineHeight
@@ -39,10 +40,16 @@ module Redcar
       # cursorPosition - the zero-based index representing the desired cursor
       #    position within the inserted contents after the insertion is made.
       def insertControlContents control, contents, cursorPosition
-        prefix = @doc.current_word
+        prefix = doc.current_word
         offset = control.caretOffset - prefix.length
+
+        next_line     = doc.offset_at_line(doc.cursor_line + 1)
+        next_line_end = doc.offset_at_line_end(doc.cursor_line + 1)
+        range         = doc.get_range(next_line, next_line_end - next_line)
+        lagniappe     = range.strip.length > 0 ? 0 : range.length
+
         if Cocoa::Autocompletion.is_objc?(contents)
-          control.replaceTextRange(offset, prefix.length, "")
+          control.replaceTextRange(offset, prefix.length + lagniappe, "")
           snippet    = Cocoa::Autocompletion.method_to_snippet(contents)
           controller = @doc.controllers(Redcar::Snippets::DocumentController).first
           controller.start_snippet!(snippet)
