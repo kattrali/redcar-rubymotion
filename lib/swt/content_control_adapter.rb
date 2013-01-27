@@ -43,18 +43,18 @@ module Redcar
         prefix = doc.current_word
         offset = control.caretOffset - prefix.length
 
-        next_line     = doc.offset_at_line(doc.cursor_line + 1)
-        next_line_end = doc.offset_at_line_end(doc.cursor_line + 1)
-        range         = doc.get_range(next_line, next_line_end - next_line)
-        lagniappe     = range.strip.length > 0 ? 0 : range.length
+        next_line      = doc.offset_at_line(doc.cursor_line + 1)
+        next_line_end  = doc.offset_at_line_end(doc.cursor_line + 1)
+        range          = doc.get_range(next_line, next_line_end - next_line)
+        replace_length = prefix.length + (range.strip.length > 0 ? 0 : range.length)
 
         if Cocoa::Autocompletion.is_objc?(contents)
-          control.replaceTextRange(offset, prefix.length + lagniappe, "")
+          control.replaceTextRange(offset, replace_length, "")
           snippet    = Cocoa::Autocompletion.method_to_snippet(contents)
           controller = @doc.controllers(Redcar::Snippets::DocumentController).first
           controller.start_snippet!(snippet)
         else
-          control.replaceTextRange(offset, prefix.length, contents)
+          control.replaceTextRange(offset, replace_length, contents)
         end
       end
 
