@@ -131,8 +131,13 @@ module Redcar
           adapter  = ContentControlAdapter.new(tab.document)
           proposer = ContentProposalAdapter.new(control, adapter, ContentProposalProvider.new(tab.document, project), nil, nil)
           proposer.popupSize = Swt::Graphics::Point.new(400, 200)
+          tab.proposal_adapter = proposer
         end
       end
+    end
+
+    def self.tab_closed tab
+      tab.proposal_provider = nil if tab.is_a?(EditTab)
     end
 
     def self.is_rubymotion? project
@@ -161,12 +166,12 @@ module Redcar
     def self.keymaps
       osx = Redcar::Keymap.build("main", [:osx]) do
         link "Cmd+Shift+Space", DocsLookupCommand
-        link "Cmd+R", BuildCommand
-        link "Cmd+Shift+R", BuildOnDeviceCommand
-        link "Cmd+Ctrl+T", TestCommand
-        link "Ctrl+Shift+Q", QuitSimulatorCommand
-        link "Ctrl+Shift+S", StopSimulatorCommand
-        link "Ctrl+Shift+H", HomeSimulatorCommand
+        link "Cmd+R",           BuildCommand
+        link "Cmd+Shift+R",     BuildOnDeviceCommand
+        link "Cmd+Ctrl+T",      TestCommand
+        link "Ctrl+Shift+Q",    QuitSimulatorCommand
+        link "Ctrl+Shift+S",    StopSimulatorCommand
+        link "Ctrl+Shift+H",    HomeSimulatorCommand
       end
       [osx]
     end

@@ -4,23 +4,30 @@ module Redcar
     # org.eclipse.jface.fieldassist
     # Interface IContentProposalProvider
     class ContentProposalProvider
+      # org.eclipse.jface.fieldassist
+      # Interface IContentProposal
       class Proposal
         def initialize(content)
           @content = content
         end
 
+        # Return the content represented by this proposal.
         def getContent
           @content
         end
 
+        # Return the zero-based integer position within the contents that
+        # the cursor should be placed after the proposal is accepted.
         def getCursorPosition
           @content.length
         end
 
+        # Return a description that describes this proposal.
         def getDescription
           nil
         end
 
+        # Return the label used to describe this proposal.
         def getLabel
           @content
         end

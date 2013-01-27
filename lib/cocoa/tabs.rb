@@ -7,4 +7,8 @@ module Redcar
       end
     end
   end
+
+  class EditTab
+    attr_accessor :proposal_adapter
+  end
 end

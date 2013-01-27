@@ -88,7 +88,7 @@ Syntax checking is performed on file save.
 ### Build Options
 
 - **Saving Tabs Before Command Execution:** Automatically saving tabs before running a command can be changed via the menu in `Cocoa > Build Options`.
-- **Running Rake Commands with `--trace`:** Automatically saving tabs before running a command can be changed via the menu in `Cocoa > Build Options`.
+- **Running Rake Commands with `--trace`:** Running commands with full backtraces can be changed via the menu in `Cocoa > Build Options`.
 
 ### Opening Links
 
