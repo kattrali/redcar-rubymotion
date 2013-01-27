@@ -37,7 +37,7 @@ RubyMotion workflow support in Redcar Editor
 ### Upgrade
 
 1. Close Redcar
-2. Run `git fetch origin && git checkout 0.9` from `~/.redcar/plugins/rubymotion`
+2. Run `git fetch origin && git checkout 0.9.1` from `~/.redcar/plugins/rubymotion`
 3. Start Redcar
 
 ## Usage

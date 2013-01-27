@@ -1,6 +1,10 @@
 Release Notes
 =============
 
+### 0.9.1
+
+- [Fixed] Avoid inserting extra line when using autocompletion
+
 ### 0.9
 
 - [Feature] Option to use inline documentation using [ClamShell](http://kattrali.github.com/clamshell/) and the [RubyMotion DocSet](http://rubymotion.com/files/RubyMotion.docset.zip)
